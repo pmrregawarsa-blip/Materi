@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PMR Islamic School Bogor | Portal Materi, Kuis dan Simulasi</title>
+<meta name="theme-color" content="#06231c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#04211b;--bg2:#0a3d33;--bg3:#16202d;--glass:rgba(255,255,255,.075);--glass2:rgba(255,255,255,.15);--bd:rgba(255,255,255,.17);--tx:#effaf5;--mut:#a7c6ba;--em:#34e0a1;--gold:#f6c85f;--red:#ff5566;--sh:0 14px 44px rgba(0,0,0,.34);--r:28px;--ink:#04211b}
+[data-theme=light]{--bg1:#e8faf2;--bg2:#d3f1e4;--bg3:#fcf1d8;--glass:rgba(255,255,255,.55);--glass2:rgba(255,255,255,.85);--bd:rgba(255,255,255,.95);--tx:#0b2b22;--mut:#3b6455;--em:#0a9a6a;--gold:#a8780a;--red:#d42a3c;--sh:0 14px 44px rgba(20,90,65,.16);--ink:#ffffff}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{font-family:'Lexend',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;color:var(--tx);min-height:100vh;line-height:1.7;background:linear-gradient(140deg,var(--bg1),var(--bg2) 55%,var(--bg3));background-attachment:fixed;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Crect x='20' y='20' width='48' height='48' fill='none' stroke='%23ffffff' stroke-opacity='.07'/%3E%3Crect x='20' y='20' width='48' height='48' fill='none' stroke='%23ffffff' stroke-opacity='.07' transform='rotate(45 44 44)'/%3E%3C/svg%3E")}
+.bg{position:fixed;inset:0;z-index:-2;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);animation:float 20s ease-in-out infinite}
+.b1{width:430px;height:430px;background:#0fb98a;top:-120px;left:-90px;opacity:.5}
+.b2{width:360px;height:360px;background:#f6c85f;right:-90px;top:32%;opacity:.28;animation-delay:-7s}
+.b3{width:400px;height:400px;background:#ff5566;left:28%;bottom:-170px;opacity:.24;animation-delay:-12s}
+@keyframes float{50%{transform:translate(60px,-50px) scale(1.14)}}
+h1,h2,h3,h4{font-family:'Amiri',Georgia,serif;line-height:1.2}
+a{color:var(--em);cursor:pointer;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.glass{background:var(--glass);border:1px solid var(--bd);backdrop-filter:blur(18px) saturate(165%);-webkit-backdrop-filter:blur(18px) saturate(165%);box-shadow:var(--sh);border-radius:var(--r)}
+.pad{padding:22px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.center{text-align:center;justify-content:center}
+.sub{color:var(--mut);max-width:62ch}
+/* navigasi */
+.nav{position:fixed;top:12px;left:12px;right:12px;z-index:50;border-radius:22px}
+.navin{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 16px}
+.brand{display:flex;align-items:center;gap:11px;color:var(--tx)}
+.brand svg{width:40px;height:40px;flex:none}
+.brand b{display:block;font-family:'Amiri',serif;font-size:1.25rem;line-height:1.1}
+.brand small{color:var(--mut);font-size:.72rem}
+#menu{display:flex;gap:4px;flex-wrap:wrap}
+#menu a{color:var(--tx);padding:8px 13px;border-radius:14px;font-size:.88rem;transition:background .2s}
+#menu a:hover{background:var(--glass2)}
+#menu a.act{background:var(--em);color:var(--ink);font-weight:600}
+.tools{display:flex;gap:8px}
+.icon{width:40px;height:40px;border-radius:14px;border:1px solid var(--bd);background:var(--glass);font-size:1.05rem}
+.burger{display:none}
+main{padding-top:98px;padding-bottom:40px}
+.view{display:none}
+.view.on{display:block;animation:fade .45s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.sec{font-size:clamp(2rem,4.5vw,2.9rem);margin:8px 0 6px}
+/* tombol */
+.btn{border:1px solid var(--bd);background:var(--glass);padding:11px 20px;border-radius:14px;font-weight:500;transition:transform .15s,background .2s}
+.btn:hover{background:var(--glass2);transform:translateY(-2px)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn.pri{background:linear-gradient(135deg,var(--em),#1bb98a);color:var(--ink);border:0;font-weight:600}
+.btn.red{background:linear-gradient(135deg,var(--red),#d62b45);color:#fff;border:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--bd);background:var(--glass);padding:7px 15px;border-radius:99px;font-size:.88rem;transition:.2s}
+.chip small{opacity:.7}
+.chip:hover{background:var(--glass2)}
+.chip.on{background:var(--gold);color:#2b2000;border-color:transparent;font-weight:600}
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr .85fr;gap:22px;align-items:stretch;margin-bottom:22px}
+.heroL{padding:38px 34px}
+.heroL h1{font-size:clamp(2.5rem,6vw,4.4rem);margin:12px 0 14px;font-weight:700}
+.pill{display:inline-block;padding:6px 15px;border-radius:99px;background:var(--glass2);border:1px solid var(--bd);font-size:.85rem}
+.heroR{padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center}
+.heart{width:190px;height:190px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.35),rgba(255,255,255,.05) 60%);border:1px solid var(--bd);animation:beat .545s ease-in-out infinite;box-shadow:0 0 60px rgba(255,85,102,.35)}
+.heart svg{width:130px;height:130px}
+@keyframes beat{0%,100%{transform:scale(1)}18%{transform:scale(1.09)}}
+.hikmah{font-family:'Amiri',serif;font-size:1.28rem;line-height:1.5}
+.hikmah small{display:block;font-family:'Lexend',sans-serif;font-size:.78rem;color:var(--mut);margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:34px}
+.stat{padding:18px;text-align:center;border-radius:22px}
+.stat b{font-family:'Amiri',serif;font-size:2.3rem;display:block;line-height:1.1;color:var(--gold)}
+.stat span{color:var(--mut);font-size:.84rem}
+.ring{width:110px;height:110px}
+.ring circle{fill:none;stroke-width:9}
+.rb{stroke:var(--glass2)}
+.rf{stroke:var(--em);stroke-linecap:round;transition:stroke-dashoffset 1s}
+.ring text{fill:var(--tx);font-size:22px;font-weight:700;font-family:'Lexend',sans-serif}
+/* grid kartu */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin:20px 0}
+.card{padding:22px;border-radius:24px;cursor:pointer;position:relative;transition:transform .2s,background .2s}
+.card:hover{transform:translateY(-4px);background:var(--glass2)}
+.card .ic{font-size:2.1rem;margin-bottom:6px}
+.card h3{font-size:1.45rem;margin:8px 0 4px}
+.card p{color:var(--mut);font-size:.9rem;margin-bottom:8px}
+.card small{color:var(--gold)}
+.tag{font-size:.74rem;padding:2px 11px;border-radius:99px;background:var(--glass2);border:1px solid var(--bd)}
+.done{position:absolute;top:16px;right:16px;font-size:.78rem;color:var(--em);font-weight:600}
+.empty{padding:30px;text-align:center;color:var(--mut)}
+.bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:16px 0}
+input[type=text],input[type=number],select{background:var(--glass);border:1px solid var(--bd);color:var(--tx);padding:11px 16px;border-radius:14px;font:inherit;min-width:0}
+#srch{flex:1;min-width:220px}
+.pbar{height:10px;border-radius:9px;background:var(--glass2);overflow:hidden;margin-bottom:6px}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--em),var(--gold));border-radius:9px;transition:width .5s}
+/* timeline dan prinsip */
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0 36px}
+.tl div{padding:16px 18px;border-radius:20px;border-left:5px solid var(--gold)}
+.tl b{font-family:'Amiri',serif;font-size:1.3rem;display:block}
+.tl span{color:var(--mut);font-size:.86rem}
+#prinsipDesc{margin-top:14px;min-height:96px}
+#prinsipDesc h3{font-size:1.6rem}
+/* modal materi */
+#modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(0,10,8,.6);backdrop-filter:blur(6px)}
+#modal.on{display:flex;animation:fade .25s}
+.sheet{width:min(820px,100%);max-height:92vh;display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--bd);border-radius:28px;overflow:hidden;box-shadow:var(--sh)}
+[data-theme=light] .sheet{background:#f4fcf8}
+.sh-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 22px;border-bottom:1px solid var(--bd)}
+.sh-h h3{font-size:1.6rem}
+.sh-b{padding:20px 26px;overflow-y:auto;flex:1}
+.sh-f{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;padding:14px 22px;border-top:1px solid var(--bd)}
+.sh-b h4{font-size:1.4rem;margin:18px 0 6px;color:var(--gold)}
+.sh-b p,.sh-b li{margin-bottom:6px}
+.sh-b ul,.sh-b ol{padding-left:22px;margin-bottom:10px}
+.note,.warn{padding:13px 16px;border-radius:16px;margin:12px 0;font-size:.93rem}
+.note{background:rgba(52,224,161,.14);border:1px solid rgba(52,224,161,.4)}
+.warn{background:rgba(255,85,102,.14);border:1px solid rgba(255,85,102,.45)}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
+th{color:var(--gold);font-weight:600}
+/* kuis */
+.qbox{padding:26px}
+.qhead{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px;font-weight:500}
+.qtxt{font-family:'Amiri',serif;font-size:1.85rem;line-height:1.35;margin:14px 0 18px}
+.opt{display:flex;gap:14px;align-items:center;width:100%;text-align:left;padding:14px 16px;margin-bottom:10px;border-radius:18px;border:1px solid var(--bd);background:var(--glass);transition:.2s}
+.opt b{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:11px;background:var(--glass2)}
+.opt:hover:not(:disabled){background:var(--glass2);transform:translateX(4px)}
+.opt.ok{background:rgba(52,224,161,.28);border-color:var(--em)}
+.opt.bad{background:rgba(255,85,102,.28);border-color:var(--red)}
+.exp{padding:14px 16px;border-radius:16px;background:var(--glass2);margin:12px 0;font-size:.93rem}
+#qTimer{padding:2px 12px;border-radius:99px;background:var(--glass2)}
+#qTimer.low{background:var(--red);color:#fff}
+.big{font-size:4rem}
+.rev{padding:12px 16px;margin:8px 0;border-radius:16px;background:var(--glass);border:1px solid var(--bd)}
+.rev small{display:block;color:var(--mut)}
+/* kartu belajar */
+.fc{perspective:1200px;max-width:560px;margin:20px auto;height:280px;cursor:pointer}
+.fci{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.fc.flip .fci{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px;text-align:center;border-radius:28px;border:1px solid var(--bd);background:var(--glass2);backdrop-filter:blur(14px)}
+.face.back{transform:rotateY(180deg);background:linear-gradient(135deg,rgba(52,224,161,.3),rgba(246,200,95,.25))}
+.face h3{font-size:2.5rem}
+.face small{color:var(--mut);margin-top:10px}
+/* alat */
+.tools-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px;margin-top:20px}
+.tool{padding:24px;border-radius:26px}
+.tool h3{font-size:1.5rem;margin-bottom:4px}
+.tool p{color:var(--mut);font-size:.9rem;margin-bottom:12px}
+.pulse-c{width:140px;height:140px;margin:10px auto;border-radius:50%;display:grid;place-items:center;font-size:2.8rem;font-weight:700;font-family:'Amiri',serif;background:radial-gradient(circle,rgba(255,85,102,.5),rgba(255,85,102,.1));border:1px solid var(--bd)}
+.pulse{animation:pls .45s}
+@keyframes pls{30%{transform:scale(1.2)}}
+input[type=range]{width:100%;accent-color:var(--em)}
+.kit label{display:flex;gap:10px;padding:5px 0;cursor:pointer;font-size:.92rem}
+.kit input{accent-color:var(--em);width:18px;height:18px}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.nums a{display:block;padding:12px;border-radius:16px;background:var(--glass);border:1px solid var(--bd);text-align:center;color:var(--tx)}
+.nums b{display:block;font-size:1.6rem;font-family:'Amiri',serif;color:var(--gold)}
+.nums span{font-size:.78rem;color:var(--mut)}
+/* simulasi dan profil */
+.sim{cursor:pointer}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin:16px 0}
+.badge{padding:18px;border-radius:22px;text-align:center}
+.badge .ic{font-size:2.4rem}
+.badge.off{opacity:.38;filter:grayscale(1)}
+.badge small{display:block;color:var(--mut)}
+footer{text-align:center;padding:34px 18px 60px;color:var(--mut);font-size:.88rem}
+footer b{font-family:'Amiri',serif;font-size:1.3rem;color:var(--tx)}
+#readbar{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--em),var(--gold),var(--red));z-index:99}
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,40px);opacity:0;padding:12px 22px;border-radius:16px;z-index:120;background:var(--bg2);border:1px solid var(--bd);transition:.35s;pointer-events:none;max-width:90vw;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#confetti{position:fixed;inset:0;z-index:110;pointer-events:none;display:none}
+#toTop{position:fixed;right:18px;bottom:18px;z-index:60;display:none}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.burger{display:block}#menu{display:none;position:absolute;top:62px;left:0;right:0;flex-direction:column;padding:10px;background:var(--bg2);border:1px solid var(--bd);border-radius:20px}[data-theme=light] #menu{background:#f4fcf8}#menu.open{display:flex}.heroL{padding:26px 22px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+<div id="readbar"></div>
+
+<header class="nav glass">
+  <div class="wrap navin">
+    <a class="brand" onclick="go('home')" aria-label="Beranda">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.4)"/><path d="M44 14a20 20 0 1 0 0 36a16 16 0 1 1 0-36z" fill="#f6c85f"/><rect x="26" y="20" width="9" height="26" rx="2" fill="#ff5566"/><rect x="18" y="28.5" width="25" height="9" rx="2" fill="#ff5566"/></svg>
+      <div><b>PMR Islamic School Bogor</b><small>Portal belajar kepalangmerahan</small></div>
+    </a>
+    <nav id="menu"></nav>
+    <div class="tools">
+      <button class="icon" id="themeBtn" title="Ganti tema" aria-label="Ganti tema"></button>
+      <button class="icon burger" id="burger" aria-label="Buka menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- BERANDA -->
+<section class="view on" id="v-home"><div class="wrap">
+  <div class="hero">
+    <div class="glass heroL">
+      <span class="pill" id="greet"></span>
+      <h1>Portal Belajar PMR Islamic School Bogor</h1>
+      <p class="sub">Materi kepalangmerahan, pertolongan pertama, kesehatan remaja dan kesiapsiagaan bencana. Belajar lewat kuis, kartu istilah, simulasi darurat dan alat bantu. Menolong dengan ilmu, berbakti dengan ikhlas.</p>
+      <div class="row" style="margin-top:22px">
+        <button class="btn pri" onclick="go('materi')">📚 Mulai belajar</button>
+        <button class="btn" onclick="go('kuis')">🎯 Coba kuis</button>
+        <button class="btn" onclick="go('alat')">🧰 Buka alat bantu</button>
+      </div>
+    </div>
+    <div class="glass heroR">
+      <div class="heart"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M46 8a25 25 0 1 0 0 48a20 20 0 1 1 0-48z" fill="#f6c85f" opacity=".95"/><rect x="25" y="17" width="12" height="32" rx="3" fill="#ff5566"/><rect x="15" y="27" width="32" height="12" rx="3" fill="#ff5566"/></svg></div>
+      <div class="hikmah" id="hikmah"></div>
+      <button class="btn" onclick="nextHikmah()">Hikmah lainnya</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="glass stat"><svg class="ring" viewBox="0 0 120 120"><g transform="rotate(-90 60 60)"><circle class="rb" cx="60" cy="60" r="52"/><circle class="rf" id="ringFg" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></g><text x="60" y="68" text-anchor="middle" id="ringTx">0%</text></svg><span>Progres materi</span></div>
+    <div class="glass stat"><b id="sMat">0</b><span>Materi lengkap</span></div>
+    <div class="glass stat"><b id="sQ">0</b><span>Soal kuis</span></div>
+    <div class="glass stat"><b id="sFc">0</b><span>Kartu istilah</span></div>
+    <div class="glass stat"><b id="sOk">0</b><span>Jawaban benar kamu</span></div>
+  </div>
+
+  <h2 class="sec">Tujuh Prinsip Dasar Gerakan</h2>
+  <p class="sub">Ketuk salah satu prinsip untuk membaca artinya.</p>
+  <div class="chips" id="prinsipRow" style="margin-top:14px"></div>
+  <div class="glass pad" id="prinsipDesc"></div>
+
+  <h2 class="sec" style="margin-top:38px">Yang bisa kamu lakukan di sini</h2>
+  <div class="grid" id="featGrid"></div>
+
+  <h2 class="sec">Hari penting dalam setahun</h2>
+  <div class="tl" id="dayList"></div>
+
+  <div class="glass pad">
+    <h2 class="sec" style="margin-top:0">Tri Bakti PMR</h2>
+    <p>Tiga bakti yang menjadi arah kegiatan setiap anggota Palang Merah Remaja: <b>meningkatkan keterampilan hidup sehat</b>, <b>berkarya dan berbakti kepada masyarakat</b>, serta <b>mempererat persahabatan nasional dan internasional</b>.</p>
+  </div>
+</div></section>
+
+<!-- MATERI -->
+<section class="view" id="v-materi"><div class="wrap">
+  <h2 class="sec">Materi PMR</h2>
+  <p class="sub">Pilih topik, baca sampai habis, lalu tandai selesai untuk menambah progres dan lencana.</p>
+  <div class="glass pad bar"><input type="text" id="srch" placeholder="Cari materi, misalnya RJP, mitela atau banjir" aria-label="Cari materi"><div class="chips" id="catChips"></div></div>
+  <div class="glass pad"><div class="pbar"><i id="matBar"></i></div><small id="matTxt"></small></div>
+  <div class="grid" id="matGrid"></div>
+</div></section>
+
+<!-- KUIS -->
+<section class="view" id="v-kuis"><div class="wrap">
+  <h2 class="sec">Kuis PMR</h2>
+  <div id="qSetup" class="glass pad">
+    <p class="sub">Pilih kategori, jumlah soal dan mode. Setiap soal punya penjelasan, dan kamu punya satu bantuan 50:50 di tiap kuis.</p>
+    <h4 style="margin:16px 0 8px">Kategori</h4><div class="chips" id="qCats"></div>
+    <h4 style="margin:16px 0 8px">Jumlah soal</h4><div class="chips" id="qNs"></div>
+    <h4 style="margin:16px 0 8px">Mode</h4><div class="chips" id="qModes"></div>
+    <p id="qBest" class="sub" style="margin:16px 0"></p>
+    <button class="btn pri" onclick="startQuiz()">🚀 Mulai kuis</button>
+  </div>
+  <div id="qPlay" class="glass qbox" hidden>
+    <div class="pbar"><i id="qBar"></i></div>
+    <div class="qhead"><span id="qNo"></span><span id="qCat" class="tag"></span><span id="qScore"></span><span id="qStreak"></span><span id="qTimer"></span></div>
+    <div class="qtxt" id="qText"></div>
+    <div id="qOpts"></div>
+    <div class="exp" id="qExp" hidden></div>
+    <div class="row"><button class="btn" id="q5050" onclick="fifty()">✂️ 50:50</button><button class="btn pri" id="qNext" onclick="nextQ()" hidden>Lanjut</button></div>
+  </div>
+  <div id="qEnd" class="glass qbox" hidden></div>
+</div></section>
+
+<!-- KARTU -->
+<section class="view" id="v-kartu"><div class="wrap">
+  <h2 class="sec">Kartu Istilah</h2>
+  <p class="sub">Ketuk kartu untuk membaliknya. Tandai istilah yang sudah kamu hafal. Tombol panah kiri dan kanan di keyboard juga bisa dipakai.</p>
+  <div class="fc" id="fcCard" onclick="fcFlip()"><div class="fci"><div class="face"><h3 id="fcT"></h3><small>Ketuk untuk melihat arti</small></div><div class="face back"><p id="fcD"></p></div></div></div>
+  <div class="row center"><button class="btn" onclick="fcMove(-1)">Sebelumnya</button><span id="fcN"></span><button class="btn" onclick="fcMove(1)">Berikutnya</button></div>
+  <div class="row center" style="margin-top:14px"><button class="btn pri" id="fcMark" onclick="fcKnow()"></button><button class="btn" onclick="fcShuffle()">🔀 Acak urutan</button><span id="fcKnown" class="sub"></span></div>
+</div></section>
+
+<!-- SIMULASI -->
+<section class="view" id="v-simulasi"><div class="wrap">
+  <h2 class="sec">Simulasi Darurat</h2>
+  <p class="sub">Latih pengambilan keputusan di situasi nyata. Pilih tindakan paling tepat di setiap langkah.</p>
+  <div class="grid" id="simList"></div>
+  <div class="glass qbox" id="simPlay" hidden></div>
+</div></section>
+
+<!-- ALAT -->
+<section class="view" id="v-alat"><div class="wrap">
+  <h2 class="sec">Alat Bantu PMR</h2>
+  <p class="sub">Alat latihan untuk dipakai bersama teman. Ini bukan pengganti pelatihan resmi dan tenaga medis.</p>
+  <div class="tools-g">
+    <div class="glass tool">
+      <h3>Metronom RJP</h3><p>Irama kompresi dada 100 sampai 120 per menit. Setiap 30 hitungan, beri 2 napas bantuan.</p>
+      <div class="pulse-c" id="mPulse"><span id="mCount">0</span></div>
+      <p class="center" id="mHint" style="text-align:center">Tekan mulai untuk berlatih</p>
+      <label>Kecepatan: <b id="bpmV">110</b> per menit</label><input type="range" id="bpm" min="100" max="120" value="110">
+      <div class="row center" style="margin-top:12px"><button class="btn pri" id="mBtn">▶ Mulai</button></div>
+    </div>
+    <div class="glass tool">
+      <h3>Penghitung Nadi</h3><p>Ketuk tombol setiap kamu merasakan satu denyut. Hitung berjalan 15 detik, hasilnya dikali 4.</p>
+      <div class="pulse-c" id="pulseOut"><span id="pN">0</span></div>
+      <p id="pRes" style="text-align:center">Ketuk untuk mulai</p>
+      <div class="row center"><button class="btn red" id="pulseBtn">❤️ Ketuk tiap denyut</button></div>
+    </div>
+    <div class="glass tool">
+      <h3>Timer Cuci Tangan</h3><p>Enam langkah cuci tangan selama 40 detik dengan air mengalir dan sabun.</p>
+      <div class="pbar"><i id="hwBar"></i></div>
+      <h3 id="hwStep" style="text-align:center;margin:12px 0">Siap?</h3>
+      <div class="row center"><button class="btn pri" id="hwBtn">🧼 Mulai</button></div>
+    </div>
+    <div class="glass tool kit">
+      <h3>Checklist Kotak P3K</h3><p>Centang isi kotak P3K sekolah atau tasmu. <b id="kitN"></b></p>
+      <div id="kitList"></div>
+    </div>
+    <div class="glass tool">
+      <h3>Kalkulator IMT</h3><p>Indeks massa tubuh untuk gambaran awal status gizi.</p>
+      <div class="row"><input type="number" id="bw" placeholder="Berat (kg)" style="width:46%"><input type="number" id="bh" placeholder="Tinggi (cm)" style="width:46%"></div>
+      <div class="row" style="margin:12px 0"><button class="btn pri" onclick="calcBMI()">Hitung</button></div>
+      <p id="bRes"></p>
+    </div>
+    <div class="glass tool">
+      <h3>Nomor Darurat</h3><p>Ketuk untuk menelepon. Simpan di ponselmu.</p>
+      <div class="nums">
+        <a href="tel:112"><b>112</b><span>Darurat terpadu</span></a>
+        <a href="tel:119"><b>119</b><span>Ambulans</span></a>
+        <a href="tel:110"><b>110</b><span>Polisi</span></a>
+        <a href="tel:113"><b>113</b><span>Pemadam kebakaran</span></a>
+        <a href="tel:115"><b>115</b><span>Basarnas</span></a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- PROFIL -->
+<section class="view" id="v-profil"><div class="wrap">
+  <h2 class="sec">Profil dan Lencana</h2>
+  <div class="glass pad">
+    <div class="row"><input type="text" id="nameIn" placeholder="Tulis namamu" maxlength="28" style="flex:1;min-width:200px"><button class="btn pri" onclick="saveName()">Simpan nama</button></div>
+    <div class="stats" style="margin:18px 0 0" id="pStats"></div>
+  </div>
+  <div class="badges" id="badgeList"></div>
+  <div class="row"><button class="btn red" onclick="resetAll()">🗑 Hapus semua progres</button></div>
+</div></section>
+</main>
+
+<footer>
+  <b>PMR Islamic School Bogor</b><br>
+  Siaga, tangguh dan berakhlak mulia untuk sesama.<br>
+  Materi bersifat edukasi. Dalam keadaan darurat, hubungi 112 atau 119 dan ikuti pelatihan resmi PMI.
+</footer>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet">
+    <div class="sh-h"><h3 id="mTitle"></h3><button class="icon" onclick="closeM()" aria-label="Tutup">✕</button></div>
+    <div class="sh-b" id="mBody"></div>
+    <div class="sh-f"><button class="btn" id="prevM" onclick="stepM(-1)">Sebelumnya</button><button class="btn pri" id="markBtn" onclick="markM()"></button><button class="btn" id="nextM" onclick="stepM(1)">Berikutnya</button></div>
+  </div>
+</div>
+<div id="toast" role="status"></div>
+<canvas id="confetti"></canvas>
+<button class="icon glass" id="toTop" onclick="scrollTo({top:0})" aria-label="Ke atas">⬆</button>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const DB={g(k,d){try{const v=localStorage.getItem('isb_'+k);return v?JSON.parse(v):d}catch(e){return d}},s(k,v){try{localStorage.setItem('isb_'+k,JSON.stringify(v))}catch(e){}}};
+const S={read:DB.g('read',[]),best:DB.g('best',{}),st:DB.g('st',{ans:0,ok:0,quiz:0,perfect:0}),known:DB.g('known',[]),kit:DB.g('kit',[]),name:DB.g('name',''),theme:DB.g('theme','dark'),sims:DB.g('sims',[]),badges:DB.g('badges',[])};
+const save=()=>Object.keys(S).forEach(k=>DB.s(k,S[k]));
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800)}
+
+/* ================= DATA MATERI ================= */
+const MATERI=[
+{id:'sejarah',ic:'📜',cat:'Dasar',t:'Sejarah Palang Merah dan PMI',min:6,s:'Dari medan Solferino 1859 sampai lahirnya PMI tahun 1945.',h:`
+<p>Gagasan Palang Merah lahir dari kepedulian seorang pengusaha Swiss bernama <b>Henry Dunant</b>. Pada <b>24 Juni 1859</b> ia menyaksikan ribuan prajurit terluka tanpa perawatan setelah pertempuran <b>Solferino</b> di Italia. Bersama warga setempat, ia merawat korban tanpa melihat mereka berasal dari pihak mana.</p>
+<h4>Tonggak sejarah</h4>
+<table><tr><th>Tahun</th><th>Peristiwa</th></tr>
+<tr><td>1862</td><td>Dunant menerbitkan buku <i>A Memory of Solferino</i> yang mengajak dunia membentuk relawan penolong korban perang.</td></tr>
+<tr><td>1863</td><td>Komite pendiri di Jenewa terbentuk, cikal bakal ICRC (Komite Internasional Palang Merah).</td></tr>
+<tr><td>1864</td><td>Konvensi Jenewa pertama disepakati untuk melindungi prajurit yang terluka.</td></tr>
+<tr><td>1901</td><td>Henry Dunant menerima Hadiah Nobel Perdamaian yang pertama, bersama Frédéric Passy.</td></tr>
+<tr><td>1919</td><td>Berdiri federasi perhimpunan nasional, kini bernama IFRC.</td></tr>
+<tr><td>1945</td><td>Palang Merah Indonesia (PMI) berdiri pada 17 September, sebulan setelah proklamasi kemerdekaan.</td></tr>
+<tr><td>1950</td><td>Palang Merah Remaja mulai dibentuk di Indonesia.</td></tr></table>
+<div class="note">💡 Hari Palang Merah dan Bulan Sabit Merah Sedunia diperingati tiap <b>8 Mei</b>, hari lahir Henry Dunant. Hari PMI diperingati tiap <b>17 September</b>.</div>
+<h4>Tiga unsur Gerakan</h4>
+<ul><li><b>ICRC</b>: lembaga netral yang melindungi korban konflik bersenjata.</li><li><b>IFRC</b>: federasi yang menghimpun perhimpunan nasional di seluruh dunia.</li><li><b>Perhimpunan Nasional</b>: seperti PMI di Indonesia, Bulan Sabit Merah Turki, dan lainnya.</li></ul>`},
+{id:'prinsip',ic:'⚖️',cat:'Dasar',t:'Tujuh Prinsip Dasar Gerakan',min:6,s:'Pedoman nilai yang dipegang semua relawan Palang Merah dan Bulan Sabit Merah.',h:`
+<p>Tujuh prinsip dasar menjaga agar kerja kemanusiaan tetap dipercaya semua pihak. Setiap anggota PMR wajib memahaminya.</p>
+<table><tr><th>Prinsip</th><th>Makna</th></tr>
+<tr><td><b>Kemanusiaan</b></td><td>Mencegah dan meringankan penderitaan manusia di mana pun ditemukan, melindungi hidup dan kesehatan, serta menghormati martabat manusia.</td></tr>
+<tr><td><b>Kesamaan</b></td><td>Menolong tanpa membedakan kebangsaan, suku, agama, golongan atau pandangan politik. Yang paling parah menderita didahulukan.</td></tr>
+<tr><td><b>Kenetralan</b></td><td>Tidak memihak dalam pertikaian dan tidak terlibat dalam perdebatan politik, ras, agama atau ideologi.</td></tr>
+<tr><td><b>Kemandirian</b></td><td>Gerakan bersifat mandiri. Perhimpunan nasional membantu pemerintah di bidang kemanusiaan, tetapi tetap menjaga otonominya.</td></tr>
+<tr><td><b>Kesukarelaan</b></td><td>Bekerja atas dasar sukarela, bukan karena mencari keuntungan.</td></tr>
+<tr><td><b>Kesatuan</b></td><td>Hanya ada satu perhimpunan Palang Merah atau Bulan Sabit Merah di satu negara, terbuka bagi semua orang.</td></tr>
+<tr><td><b>Kesemestaan</b></td><td>Gerakan bersifat sedunia. Semua perhimpunan memiliki status setara dan saling membantu.</td></tr></table>
+<div class="note">💡 Cara mengingat: <b>K</b>emanusiaan, <b>K</b>esamaan, <b>K</b>enetralan, <b>K</b>emandirian, <b>K</b>esukarelaan, <b>K</b>esatuan, <b>K</b>esemestaan. Ketujuhnya berawalan huruf K.</div>`},
+{id:'lambang',ic:'➕',cat:'Dasar',t:'Lambang dan Perlindungan',min:4,s:'Palang merah, bulan sabit merah dan kristal merah beserta aturan pemakaiannya.',h:`
+<p>Lambang adalah tanda perlindungan di daerah konflik dan tanda pengenal bantuan kemanusiaan.</p>
+<ul><li><b>Palang merah di atas dasar putih</b>: warna dibalik dari bendera Swiss sebagai penghormatan kepada negara tempat gerakan ini lahir. PMI memakai lambang ini.</li><li><b>Bulan sabit merah di atas dasar putih</b>: dipakai perhimpunan di sejumlah negara yang mayoritas penduduknya muslim.</li><li><b>Kristal merah</b>: lambang tambahan yang diakui pada tahun 2005 bagi yang tidak ingin memakai dua lambang di atas.</li></ul>
+<h4>Dua fungsi lambang</h4>
+<ul><li><b>Fungsi pelindung</b>: ukuran besar pada ambulans, rumah sakit dan petugas medis di wilayah perang. Menyerang pemilik lambang ini adalah pelanggaran hukum humaniter.</li><li><b>Fungsi penunjuk</b>: ukuran kecil untuk menunjukkan keterkaitan seseorang atau benda dengan Gerakan, misalnya pada seragam relawan PMR dan kotak P3K.</li></ul>
+<div class="warn">⚠️ Lambang tidak boleh dipakai sembarangan untuk hiasan, produk dagang atau kegiatan yang tidak berhubungan dengan Gerakan. Penyalahgunaan bisa merusak kepercayaan dan membahayakan nyawa penolong.</div>`},
+{id:'pmr',ic:'🎒',cat:'Dasar',t:'Mengenal PMR',min:5,s:'Tingkatan PMR, Tri Bakti dan kegiatan anggota di sekolah.',h:`
+<p><b>Palang Merah Remaja (PMR)</b> adalah wadah pembinaan generasi muda di bawah PMI. Anggotanya adalah pelajar yang belajar menolong, hidup sehat dan peduli sesama.</p>
+<h4>Tingkatan PMR</h4>
+<table><tr><th>Tingkat</th><th>Jenjang sekolah</th></tr><tr><td>PMR Mula</td><td>SD atau MI</td></tr><tr><td>PMR Madya</td><td>SMP atau MTs</td></tr><tr><td>PMR Wira</td><td>SMA, SMK atau MA</td></tr></table>
+<h4>Tri Bakti PMR</h4>
+<ol><li>Meningkatkan keterampilan hidup sehat.</li><li>Berkarya dan berbakti kepada masyarakat.</li><li>Mempererat persahabatan nasional dan internasional.</li></ol>
+<h4>Kegiatan khas PMR</h4>
+<ul><li>Latihan rutin P3K, pembalutan dan pembidaian.</li><li>Piket dan pendampingan di Usaha Kesehatan Sekolah (UKS).</li><li>Kampanye Perilaku Hidup Bersih dan Sehat (PHBS).</li><li>Donor darah dan bakti sosial bersama PMI.</li><li>Simulasi bencana dan kegiatan perkemahan.</li></ul>
+<div class="note">💡 Seorang anggota PMR menjadi teladan: disiplin, bersih, jujur dan siap menolong siapa saja tanpa membeda-bedakan.</div>`},
+{id:'p3k',ic:'🩹',cat:'P3K',t:'Dasar-dasar P3K',min:8,s:'Tujuan, prinsip penolong, 3A dan penilaian awal DRABC.',h:`
+<p><b>P3K (Pertolongan Pertama Pada Kecelakaan)</b> adalah pertolongan sementara kepada korban sebelum mendapat perawatan tenaga medis.</p>
+<h4>Tujuan P3K</h4><ul><li>Menyelamatkan nyawa korban.</li><li>Mencegah cacat atau kondisi yang memburuk.</li><li>Meringankan rasa sakit dan membantu penyembuhan.</li></ul>
+<h4>Prinsip penolong</h4>
+<ul><li>Tenang, cepat dan tepat.</li><li>Dahulukan keselamatan diri. Terapkan <b>3A</b>: Aman diri, Aman lingkungan, Aman korban.</li><li>Pakai alat pelindung diri seperti sarung tangan dan masker.</li><li>Kenali batas kemampuan dan segera panggil bantuan lewat 112 atau 119.</li><li>Jangan memberi makan atau minum pada korban tidak sadar.</li></ul>
+<h4>Penilaian awal DRABC</h4>
+<ol><li><b>D</b>anger: periksa bahaya di sekitar.</li><li><b>R</b>espons: tepuk bahu dan panggil, "Halo, bisa dengar saya?"</li><li><b>A</b>irway: pastikan jalan napas terbuka, tengadahkan kepala dan angkat dagu.</li><li><b>B</b>reathing: lihat gerak dada, dengar dan rasakan napas maksimal 10 detik.</li><li><b>C</b>irculation: periksa nadi dan perdarahan hebat.</li></ol>
+<div class="note">💡 Panggil bantuan sejak awal. Minta orang lain menelepon 112 atau 119 sementara kamu mulai menolong.</div>
+<h4>Isi kotak P3K</h4>
+<p>Sarung tangan, masker, kasa steril, pembalut gulung, mitela, plester, antiseptik, cairan NaCl 0,9%, gunting, pinset, kompres dingin, selimut darurat, senter dan daftar nomor darurat. Periksa masa kedaluwarsa secara berkala.</p>`},
+{id:'luka',ic:'🩸',cat:'P3K',t:'Luka dan Perdarahan',min:7,s:'Jenis luka, menghentikan perdarahan, mimisan dan luka tusuk.',h:`
+<h4>Jenis luka</h4>
+<table><tr><th>Jenis</th><th>Ciri</th></tr><tr><td>Abrasi (lecet)</td><td>Permukaan kulit tergores, sedikit darah.</td></tr><tr><td>Laserasi (robek)</td><td>Tepi luka tidak rata, bisa dalam.</td></tr><tr><td>Insisi (iris)</td><td>Tepi rata akibat benda tajam.</td></tr><tr><td>Punctura (tusuk)</td><td>Lubang sempit tetapi dalam.</td></tr><tr><td>Kontusio (memar)</td><td>Kulit utuh, jaringan bawahnya cedera.</td></tr></table>
+<h4>Menghentikan perdarahan luar</h4>
+<ol><li>Pakai sarung tangan atau plastik bersih.</li><li><b>Tekan langsung</b> luka dengan kasa atau kain bersih.</li><li>Tinggikan bagian yang berdarah bila tidak ada patah tulang.</li><li>Jika darah merembes, tambah lapisan kain. Jangan dibuka.</li><li>Lakukan balut tekan, lalu segera cari bantuan medis.</li></ol>
+<h4>Perawatan luka ringan</h4>
+<ul><li>Cuci tangan, bilas luka dengan air mengalir bersih.</li><li>Bersihkan sekitar luka dengan antiseptik, tutup kasa steril.</li><li>Ganti balutan bila basah atau kotor. Pastikan imunisasi tetanus lengkap.</li></ul>
+<h4>Mimisan</h4>
+<ol><li>Duduk tegak dengan kepala <b>sedikit condong ke depan</b>.</li><li>Tekan cuping hidung selama kurang lebih 10 menit, bernapas lewat mulut.</li><li>Jika lebih dari 20 menit tidak berhenti, bawa ke fasilitas kesehatan.</li></ol>
+<div class="warn">⚠️ Benda yang masih menancap <b>jangan dicabut</b>. Stabilkan dengan kain tebal di sekelilingnya lalu bawa ke rumah sakit. Mencabutnya dapat memicu perdarahan hebat.</div>`},
+{id:'balut',ic:'🧻',cat:'P3K',t:'Pembalutan',min:6,s:'Mitela, pembalut gulung, balut tekan dan aturan membalut.',h:`
+<p>Pembalutan dilakukan untuk menutup luka, menahan perdarahan, menyangga bagian tubuh dan menahan bidai.</p>
+<h4>Alat pembalut</h4>
+<ul><li><b>Mitela</b> (kain segitiga): serbaguna untuk gendongan lengan, balutan kepala, bahu dan telapak tangan.</li><li><b>Pembalut gulung</b>: untuk anggota gerak, dibalut berlapis.</li><li><b>Kasa steril dan plester</b>: untuk luka kecil.</li></ul>
+<h4>Aturan membalut</h4>
+<ol><li>Periksa denyut dan rasa pada ujung anggota gerak sebelum membalut.</li><li>Balut dari bagian yang jauh dari jantung menuju ke arah jantung, dengan tumpang tindih sepertiga lebar.</li><li>Balutan cukup kencang untuk menahan tetapi tidak menghentikan aliran darah.</li><li>Simpul dibuat di sisi yang sehat atau di tempat yang tidak menekan luka.</li><li>Biarkan ujung jari terlihat agar mudah memantau warna kulit, kehangatan dan rasa.</li><li>Periksa kembali sirkulasi setelah membalut.</li></ol>
+<div class="note">💡 Tanda balutan terlalu ketat: ujung jari pucat atau biru, dingin, kebas, kesemutan atau bengkak. Segera longgarkan.</div>
+<h4>Gendongan lengan (arm sling)</h4>
+<p>Letakkan lengan menyilang di dada, bentangkan mitela di bawahnya, naikkan ujung bawah ke bahu sisi sehat, ikat di sisi leher, pastikan tangan lebih tinggi dari siku.</p>`},
+{id:'patah',ic:'🦴',cat:'P3K',t:'Patah Tulang dan Pembidaian',min:6,s:'Tanda fraktur, prinsip bidai, dislokasi dan keseleo.',h:`
+<p><b>Fraktur</b> adalah patahnya tulang. Bisa tertutup (kulit utuh) atau terbuka (tulang menembus kulit).</p>
+<h4>Tanda patah tulang</h4><ul><li>Nyeri hebat, bengkak dan memar.</li><li>Bentuk anggota gerak berubah atau tidak wajar.</li><li>Tidak dapat digerakkan atau terdengar bunyi gemeretak.</li></ul>
+<h4>Prinsip pembidaian</h4>
+<ol><li>Jangan meluruskan paksa. Bidai sesuai posisi ditemukan.</li><li>Bidai harus melewati <b>dua sendi</b>: di atas dan di bawah patahan.</li><li>Lapisi bidai dengan kain atau kapas agar tidak melukai.</li><li>Pada luka terbuka, hentikan darah dan tutup luka sebelum membidai, tanpa menekan tulang yang menonjol.</li><li>Periksa denyut dan rasa di ujung anggota gerak sebelum dan sesudah.</li></ol>
+<p>Bidai darurat bisa memakai papan, kardus tebal atau majalah yang digulung. Ikat dengan mitela atau pembalut.</p>
+<h4>Keseleo dan terkilir: metode RICE</h4>
+<table><tr><th>Huruf</th><th>Tindakan</th></tr><tr><td>R</td><td>Rest: istirahatkan bagian yang cedera.</td></tr><tr><td>I</td><td>Ice: kompres dingin berbalut kain, 15 sampai 20 menit.</td></tr><tr><td>C</td><td>Compression: balut tekan ringan.</td></tr><tr><td>E</td><td>Elevation: tinggikan bagian yang cedera.</td></tr></table>
+<div class="warn">⚠️ Dugaan cedera leher atau tulang belakang: jangan digerakkan kecuali ada bahaya langsung. Tahan kepala dalam posisi lurus dan tunggu tenaga medis.</div>`},
+{id:'pingsan',ic:'😵',cat:'P3K',t:'Pingsan, Syok dan Sengatan Panas',min:6,s:'Penanganan pingsan, tanda syok dan sengatan panas saat upacara atau olahraga.',h:`
+<h4>Pingsan (sinkop)</h4>
+<p>Hilang kesadaran singkat akibat aliran darah ke otak berkurang. Penyebab: lapar, kelelahan, berdiri lama di cuaca panas atau terkejut.</p>
+<ol><li>Pindahkan ke tempat teduh dan sejuk.</li><li>Baringkan telentang, <b>tinggikan kedua tungkai</b> sekitar 30 cm.</li><li>Longgarkan pakaian ketat, beri udara.</li><li>Periksa napas. Jika tidak bernapas normal, lakukan RJP.</li><li>Setelah sadar, beri minum perlahan, biarkan berbaring dulu.</li></ol>
+<h4>Syok</h4>
+<p>Tubuh tidak cukup mendapat aliran darah. Tanda: kulit pucat, dingin dan lembap, nadi cepat dan lemah, napas cepat, lemas, gelisah, bingung.</p>
+<ul><li>Baringkan, tinggikan tungkai bila tidak ada patah tulang atau cedera kepala.</li><li>Hentikan perdarahan, selimuti agar tetap hangat.</li><li>Jangan beri makan atau minum. Panggil 112 atau 119.</li></ul>
+<h4>Sengatan panas (heat stroke)</h4>
+<p>Suhu tubuh sangat tinggi, kulit panas dan kemerahan, pusing, bingung, bisa pingsan. Ini darurat medis.</p>
+<ul><li>Pindahkan ke tempat teduh, lepas pakaian berlebih.</li><li>Dinginkan dengan kompres basah di leher, ketiak dan lipat paha, dikipasi.</li><li>Jika sadar beri minum sedikit demi sedikit. Segera ke rumah sakit.</li></ul>
+<div class="note">💡 Pencegahan: sarapan sebelum upacara, minum cukup, dan segera duduk bila merasa pusing atau berkunang-kunang.</div>`},
+{id:'bakar',ic:'🔥',cat:'P3K',t:'Luka Bakar dan Cedera Lain',min:6,s:'Derajat luka bakar, sengatan serangga, gigitan hewan dan benda asing di mata.',h:`
+<h4>Derajat luka bakar</h4>
+<table><tr><th>Derajat</th><th>Ciri</th></tr><tr><td>1</td><td>Kulit merah, perih, tanpa lepuh (seperti terbakar matahari).</td></tr><tr><td>2</td><td>Merah, melepuh, sangat nyeri.</td></tr><tr><td>3</td><td>Kulit putih, hitam atau keras, bisa tidak terasa nyeri karena saraf rusak.</td></tr></table>
+<h4>Penanganan</h4>
+<ol><li>Jauhkan korban dari sumber panas.</li><li>Alirkan <b>air bersih suhu ruang selama 10 sampai 20 menit</b>.</li><li>Lepas perhiasan atau pakaian di sekitar luka sebelum bengkak, kecuali yang menempel kuat.</li><li>Tutup longgar dengan kasa steril atau plastik bersih.</li><li>Luka lebar, luka di wajah, tangan, kemaluan atau derajat 3 harus segera dibawa ke rumah sakit.</li></ol>
+<div class="warn">⚠️ Jangan oleskan pasta gigi, mentega, kecap atau es batu langsung. Jangan memecahkan lepuh.</div>
+<h4>Sengatan lebah atau tawon</h4><p>Cabut sengat dengan menggores memakai pinggiran kartu, kompres dingin. Sesak napas, bengkak wajah atau bibir adalah tanda alergi berat: panggil bantuan segera.</p>
+<h4>Gigitan ular</h4><p>Tenangkan korban, batasi gerak anggota yang tergigit, posisikan setinggi atau sedikit di bawah jantung, lepas cincin atau gelang, dan segera bawa ke rumah sakit. Jangan disayat, dihisap atau diikat kencang.</p>
+<h4>Benda asing di mata</h4><p>Jangan digosok. Bilas dengan air bersih mengalir. Bila tertancap atau tidak lepas, tutup mata dengan kasa tanpa menekan dan ke dokter.</p>`},
+{id:'rjp',ic:'❤️',cat:'Darurat',t:'Henti Jantung, RJP dan Tersedak',min:9,s:'Langkah resusitasi jantung paru, penggunaan AED dan pertolongan tersedak.',h:`
+<p><b>Henti jantung</b> berarti jantung berhenti memompa darah. Korban tidak sadar dan tidak bernapas atau napasnya tidak normal (megap-megap). Setiap menit tanpa pertolongan menurunkan peluang hidup.</p>
+<h4>Langkah RJP dewasa</h4>
+<ol><li>Pastikan aman, cek respons dan napas.</li><li>Teriak minta tolong, <b>telepon 112 atau 119</b>, dan minta dibawakan AED.</li><li>Letakkan telapak tangan di <b>tengah dada</b> (separuh bawah tulang dada), tangan lain di atasnya.</li><li>Tekan lurus dengan lengan terkunci sedalam <b>5 sampai 6 cm</b>, kecepatan <b>100 sampai 120 per menit</b>, biarkan dada mengembang penuh.</li><li>Jika terlatih, beri 2 napas bantuan setelah 30 kompresi (rasio <b>30:2</b>).</li><li>Lanjutkan sampai korban bergerak, bantuan datang atau AED siap.</li></ol>
+<div class="note">💡 Jika belum terlatih atau ragu memberi napas bantuan, cukup lakukan kompresi dada tanpa henti.</div>
+<h4>Anak dan bayi</h4>
+<ul><li>Anak: tekan dada sedalam kurang lebih sepertiga tebal dada, boleh satu atau dua tangan.</li><li>Bayi: tekan dengan dua jari di tengah dada, kedalaman sekitar 4 cm.</li></ul>
+<h4>AED</h4>
+<p><b>Automated External Defibrillator</b> adalah alat kejut jantung otomatis. Nyalakan, ikuti suara petunjuk, tempel bantalan elektroda di dada korban, dan jauhkan semua orang saat alat menganalisis dan memberi kejutan.</p>
+<h4>Tersedak (sumbatan jalan napas)</h4>
+<ol><li>Tanyakan, "Apakah kamu tersedak?" Jika korban tidak bisa bicara, batuk lemah atau memegang leher, segera tolong.</li><li>Berdiri di samping belakang korban, miringkan ke depan, beri <b>5 tepukan keras</b> di antara tulang belikat.</li><li>Jika belum keluar, lakukan <b>5 hentakan perut</b> (Heimlich): kepalkan tangan di atas pusar, tarik cepat ke arah dalam dan atas.</li><li>Ulangi bergantian sampai benda keluar atau korban tidak sadar. Jika tidak sadar, baringkan dan mulai RJP.</li></ol>
+<p>Pada bayi: 5 tepukan punggung dan 5 tekanan dada dengan dua jari. Tidak memakai hentakan perut.</p>`},
+{id:'angkut',ic:'🚑',cat:'Darurat',t:'Memindahkan Korban dan Triase',min:5,s:'Kapan korban boleh dipindahkan, tandu darurat dan penentuan prioritas korban.',h:`
+<h4>Prinsip memindahkan korban</h4>
+<ul><li>Jangan pindahkan bila tidak ada bahaya, terutama jika curiga cedera leher atau tulang belakang.</li><li>Pindahkan segera bila ada bahaya: api, asap, bangunan retak, lalu lintas.</li><li>Angkat dengan punggung lurus dan tenaga dari kaki. Koordinasi aba-aba dengan tim.</li><li>Stabilkan dulu: hentikan perdarahan, pasang bidai sebelum diangkat.</li></ul>
+<h4>Cara pemindahan</h4>
+<ul><li>Satu penolong: tarik dari arah kepala atau bahu (tarikan baju atau selimut).</li><li>Dua atau lebih penolong: tandu, kursi, atau dikoordinasikan satu orang pada kepala.</li><li>Tandu darurat: dua tongkat yang dilapisi jaket atau kain tebal, atau selimut yang digulung.</li></ul>
+<h4>Triase (menentukan prioritas pada banyak korban)</h4>
+<table><tr><th>Warna</th><th>Arti</th></tr><tr><td>🔴 Merah</td><td>Gawat, perlu pertolongan segera.</td></tr><tr><td>🟡 Kuning</td><td>Perlu pertolongan namun bisa ditunda.</td></tr><tr><td>🟢 Hijau</td><td>Luka ringan, dapat berjalan.</td></tr><tr><td>⚫ Hitam</td><td>Meninggal atau tidak ada harapan hidup.</td></tr></table>
+<div class="note">💡 Dalam triase, tolong yang paling gawat dan masih bisa diselamatkan terlebih dahulu, bukan yang paling berisik.</div>`},
+{id:'sehat',ic:'🥗',cat:'Kesehatan',t:'Kesehatan Remaja dan PHBS',min:7,s:'Cuci tangan, gizi seimbang, tidur, aktivitas fisik, kesehatan mental dan pencegahan DBD.',h:`
+<h4>Perilaku Hidup Bersih dan Sehat (PHBS)</h4>
+<ul><li>Cuci tangan pakai sabun sebelum makan dan sesudah dari toilet.</li><li>Jajan makanan sehat, bawa botol minum sendiri.</li><li>Buang sampah pada tempatnya, jaga kebersihan kelas dan UKS.</li><li>Jauhi rokok, vape dan narkoba.</li></ul>
+<h4>Enam langkah cuci tangan</h4>
+<ol><li>Gosok telapak tangan.</li><li>Gosok punggung tangan bergantian.</li><li>Gosok sela-sela jari.</li><li>Gosok punggung jari ke telapak lawan (buku jari).</li><li>Putar ibu jari secara bergantian.</li><li>Gosokkan ujung jari dan kuku ke telapak tangan.</li></ol>
+<p>Seluruh prosedur dengan air mengalir dan sabun kira-kira 40 sampai 60 detik. Gunakan Timer Cuci Tangan di menu Alat untuk berlatih.</p>
+<h4>Gizi dan gaya hidup</h4>
+<ul><li><b>Isi Piringku</b>: sayur dan buah mengisi kira-kira separuh piring, sisanya makanan pokok, lauk pauk, dan kurangi gula, garam dan lemak.</li><li>Tidur cukup, kebutuhan remaja kira-kira 8 sampai 10 jam per hari.</li><li>Aktif bergerak minimal 60 menit per hari.</li><li>Minum air putih cukup.</li></ul>
+<h4>Kesehatan mental</h4>
+<p>Rasa cemas, sedih atau tertekan bisa dialami siapa saja. Ceritakan kepada orang yang dipercaya seperti orang tua, guru atau konselor. Meminta bantuan adalah tanda kuat, bukan lemah. Jadilah teman yang mau mendengarkan tanpa menghakimi.</p>
+<h4>Pencegahan DBD: 3M Plus</h4>
+<p>Di kota hujan seperti Bogor, genangan air mudah menjadi sarang nyamuk. Lakukan <b>Menguras</b> tempat penampungan air, <b>Menutup</b> rapat tempat air, <b>Mendaur ulang</b> barang bekas, plus memakai lotion antinyamuk dan memelihara ikan pemakan jentik.</p>`},
+{id:'donor',ic:'🩸',cat:'Kesehatan',t:'Donor Darah',min:4,s:'Syarat umum, manfaat dan hal yang perlu disiapkan sebelum mendonorkan darah.',h:`
+<p>Satu kantong darah dapat membantu menyelamatkan nyawa pasien kecelakaan, operasi, persalinan, thalasemia dan lainnya. PMI melalui Unit Donor Darah menyediakan layanan donor.</p>
+<h4>Syarat umum calon donor</h4>
+<table><tr><th>Hal</th><th>Ketentuan umum</th></tr><tr><td>Usia</td><td>17 sampai 60 tahun</td></tr><tr><td>Berat badan</td><td>Minimal 45 kg</td></tr><tr><td>Kadar hemoglobin</td><td>12,5 sampai 17 g/dl</td></tr><tr><td>Tekanan darah</td><td>Sistolik 90 sampai 160, diastolik 60 sampai 100 mmHg</td></tr><tr><td>Jarak donor</td><td>Sekitar 2 sampai 3 bulan</td></tr></table>
+<div class="note">💡 Ketentuan dapat berbeda sedikit dan ditentukan petugas pada pemeriksaan di lokasi. Anggota PMR di bawah 17 tahun bisa ikut sebagai relawan kampanye dan pendamping.</div>
+<h4>Persiapan</h4><ul><li>Tidur cukup dan sarapan sebelum donor.</li><li>Minum air putih, hindari makanan sangat berlemak.</li><li>Setelah donor, istirahat sejenak, minum banyak dan hindari angkat beban berat.</li></ul>
+<p>Donor darah dilakukan secara <b>sukarela tanpa imbalan</b>, selaras dengan prinsip Kesukarelaan.</p>`},
+{id:'bencana',ic:'🌧️',cat:'Siaga',t:'Kesiapsiagaan Bencana',min:8,s:'Gempa, banjir, longsor dan kebakaran, lengkap dengan tas siaga dan titik kumpul.',h:`
+<p>Indonesia berada di wilayah rawan bencana. Bogor dikenal sebagai kota hujan dengan risiko banjir, tanah longsor dan angin kencang saat musim hujan, serta potensi gempa. Kesiapsiagaan menurunkan jumlah korban.</p>
+<h4>Gempa bumi</h4>
+<ul><li>Saat guncangan: <b>Drop, Cover, Hold On</b> (merunduk, berlindung di bawah meja kokoh, berpegangan).</li><li>Jauhi kaca, lemari dan benda yang mudah jatuh.</li><li>Setelah berhenti, evakuasi lewat tangga (bukan lift) menuju titik kumpul.</li><li>Di luar ruangan, jauhi gedung, tiang listrik dan pohon.</li></ul>
+<h4>Banjir</h4><ul><li>Matikan listrik dan gas, amankan dokumen.</li><li>Segera menuju tempat tinggi, jangan berjalan atau berkendara melewati arus deras.</li><li>Waspada penyakit setelah banjir: cuci tangan, minum air matang.</li></ul>
+<h4>Tanah longsor</h4><p>Waspada saat hujan deras berkepanjangan, muncul retakan tanah di lereng, air sumur atau sungai keruh mendadak, atau pohon dan tiang miring. Segera menjauh dari lereng dan lapor aparat setempat.</p>
+<h4>Kebakaran</h4>
+<ul><li>Teriak "kebakaran", bunyikan alarm, hubungi <b>113</b>.</li><li>Merunduk saat melewati asap, tutup hidung dengan kain basah.</li><li>Jika pakaian terbakar: <b>Stop, Drop, Roll</b> (berhenti, rebah, berguling).</li><li>Jangan kembali ke dalam bangunan untuk mengambil barang.</li></ul>
+<h4>Tas siaga bencana</h4>
+<p>Air minum dan makanan tahan lama, senter dan baterai, peluit, obat pribadi dan P3K, salinan dokumen penting, uang tunai, pakaian ganti, masker, radio kecil, daya cadangan ponsel.</p>
+<div class="note">💡 Ketahui jalur evakuasi dan titik kumpul sekolah. Latihan simulasi berkala membuat respons lebih cepat dan tenang. Nomor Basarnas: <b>115</b>.</div>`},
+{id:'islami',ic:'🕌',cat:'Islami',t:'Menolong dalam Pandangan Islam',min:5,s:'Landasan nilai menolong sesama, ikhlas dan menjaga kebersihan sebagai bagian dari iman.',h:`
+<p>Bagi keluarga besar Islamic School Bogor, kerja PMR adalah wujud nyata nilai Islam: peduli, bersih, disiplin dan bermanfaat bagi manusia.</p>
+<h4>Ayat dan hadis yang relevan (terjemahan)</h4>
+<ul><li>Barang siapa menghidupkan (menyelamatkan) satu jiwa, seakan-akan ia menghidupkan seluruh manusia. (QS. Al-Ma'idah: 32)</li><li>Tolong-menolonglah kamu dalam kebajikan dan takwa. (QS. Al-Ma'idah: 2)</li><li>Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia. (HR. Ahmad dan Thabrani)</li><li>Bersuci adalah setengah dari iman. (HR. Muslim)</li><li>Mukmin yang kuat lebih baik dan lebih dicintai Allah daripada mukmin yang lemah. (HR. Muslim)</li></ul>
+<h4>Akhlak seorang relawan</h4>
+<ul><li><b>Ikhlas</b>: menolong karena Allah, bukan pujian.</li><li><b>Amanah</b>: menjaga rahasia kondisi korban dan memakai ilmu dengan benar.</li><li><b>Adil</b>: menolong semua orang tanpa membedakan agama, suku atau golongan, sejalan dengan prinsip Kesamaan dan Kemanusiaan.</li><li><b>Sabar dan tenang</b>: tidak panik, menenangkan korban dengan kata-kata baik.</li><li><b>Menjaga aurat dan adab</b>: menghormati korban, menutup tubuhnya dengan kain bila perlu, dan idealnya ditolong sesama jenis bila memungkinkan, tanpa menunda pertolongan darurat.</li></ul>
+<div class="note">💡 Dalam keadaan darurat yang mengancam nyawa, pertolongan segera diutamakan. Berdoalah sebelum dan sesudah menolong, lalu serahkan hasilnya kepada Allah.</div>`}
+];
+
+/* ================= BANK SOAL ================= */
+const QS=[];const Q=(c,q,a,w,e)=>QS.push({c,q,a,w,e});
+Q('Sejarah','Siapa pencetus gagasan Palang Merah?','Henry Dunant',['Florence Nightingale','Louis Pasteur','Alexander Fleming'],'Henry Dunant menggagas pertolongan netral bagi korban perang setelah menyaksikan Solferino.');
+Q('Sejarah','Pertempuran yang menginspirasi Henry Dunant terjadi di…','Solferino',['Waterloo','Gettysburg','Verdun'],'Pertempuran Solferino tahun 1859 di Italia.');
+Q('Sejarah','Konvensi Jenewa pertama disepakati pada tahun…','1864',['1919','1901','1945'],'Konvensi Jenewa pertama tahun 1864 melindungi prajurit yang terluka.');
+Q('Sejarah','Hari Palang Merah dan Bulan Sabit Merah Sedunia diperingati tanggal…','8 Mei',['17 September','22 Desember','1 Mei'],'8 Mei adalah hari lahir Henry Dunant.');
+Q('Sejarah','Palang Merah Indonesia berdiri pada…','17 September 1945',['17 Agustus 1945','28 Oktober 1928','10 November 1945'],'PMI berdiri sebulan setelah proklamasi kemerdekaan.');
+Q('Sejarah','Singkatan ICRC adalah…','International Committee of the Red Cross',['International Council of Relief Centers','Indonesian Committee of Red Cross','Inter-Continental Rescue Corps'],'ICRC berkedudukan di Jenewa dan melindungi korban konflik bersenjata.');
+Q('Sejarah','Lambang palang merah merupakan kebalikan warna bendera negara…','Swiss',['Inggris','Jepang','Prancis'],'Sebagai penghormatan kepada Swiss, negara asal Henry Dunant.');
+Q('Sejarah','Lambang tambahan yang diakui pada tahun 2005 adalah…','Kristal merah',['Bintang merah','Segitiga merah','Daun merah'],'Kristal merah diakui lewat Protokol III Konvensi Jenewa.');
+Q('Sejarah','PMR mulai dibentuk di Indonesia pada tahun…','1950',['1945','1965','1980'],'PMR dibentuk di bawah PMI sebagai wadah pembinaan remaja.');
+Q('Sejarah','Perhimpunan yang memakai bulan sabit merah terutama berada di negara…','Mayoritas muslim',['Skandinavia','Amerika Latin','Pasifik'],'Beberapa perhimpunan nasional di negara mayoritas muslim memakai bulan sabit merah.');
+Q('Prinsip','Menolong tanpa membedakan suku, agama dan golongan merupakan prinsip…','Kesamaan',['Kenetralan','Kemandirian','Kesatuan'],'Kesamaan: yang paling parah menderita didahulukan, tanpa diskriminasi.');
+Q('Prinsip','Tidak memihak dalam pertikaian disebut prinsip…','Kenetralan',['Kemandirian','Kesukarelaan','Kemanusiaan'],'Kenetralan menjaga kepercayaan semua pihak.');
+Q('Prinsip','Bekerja tanpa mencari keuntungan adalah prinsip…','Kesukarelaan',['Kesemestaan','Kesatuan','Kesamaan'],'Kesukarelaan: bantuan diberikan dengan sukarela.');
+Q('Prinsip','Hanya ada satu PMI di Indonesia sesuai prinsip…','Kesatuan',['Kemandirian','Kenetralan','Kesemestaan'],'Kesatuan: satu perhimpunan di satu negara dan terbuka bagi semua orang.');
+Q('Prinsip','Jumlah prinsip dasar Gerakan adalah…','Tujuh',['Lima','Sembilan','Sepuluh'],'Ada tujuh prinsip dasar.');
+Q('Prinsip','Gerakan bersifat sedunia dan setiap perhimpunan memiliki status setara. Ini prinsip…','Kesemestaan',['Kesatuan','Kenetralan','Kemandirian'],'Kesemestaan: seluruh perhimpunan saling membantu secara setara.');
+Q('Prinsip','Prinsip yang berisi usaha mencegah dan meringankan penderitaan manusia adalah…','Kemanusiaan',['Kemandirian','Kenetralan','Kesatuan'],'Kemanusiaan adalah prinsip pertama dan utama.');
+Q('Prinsip','PMR tingkat SMA atau MA disebut…','PMR Wira',['PMR Mula','PMR Madya','PMR Utama'],'Mula untuk SD, Madya untuk SMP, Wira untuk SMA.');
+Q('Prinsip','Bukan bagian dari Tri Bakti PMR adalah…','Mengikuti kompetisi olahraga profesional',['Meningkatkan keterampilan hidup sehat','Berkarya dan berbakti kepada masyarakat','Mempererat persahabatan nasional dan internasional'],'Tri Bakti: hidup sehat, berbakti kepada masyarakat, dan persahabatan.');
+Q('P3K','Kepanjangan P3K adalah…','Pertolongan Pertama Pada Kecelakaan',['Pertolongan Pasca Perawatan Klinis','Penanganan Pertama Penyakit Kronis','Petugas Penolong Pertama Korban'],'P3K adalah pertolongan sementara sebelum tenaga medis tiba.');
+Q('P3K','Hal pertama yang dilakukan penolong di lokasi kejadian adalah…','Memastikan keamanan diri, lingkungan dan korban (3A)',['Langsung memindahkan korban','Memberi minum korban','Memfoto kejadian'],'Penolong yang celaka tidak bisa menolong.');
+Q('P3K','Huruf D pada DRABC berarti…','Danger',['Doctor','Drug','Direction'],'Danger: periksa bahaya di sekitar.');
+Q('P3K','Cara menilai respons korban adalah dengan…','Menepuk bahu dan memanggil',['Mengguyur air','Menggoyang keras badannya','Menarik tangannya'],'Tepuk bahu sambil bertanya, jangan mengguncang keras.');
+Q('P3K','Cara pertama menghentikan perdarahan luar adalah…','Tekan langsung luka dengan kain bersih',['Mengikat kencang di dekat luka','Menaburkan kopi','Meniup luka'],'Tekanan langsung adalah cara utama dan paling aman.');
+Q('P3K','Posisi yang benar saat mimisan adalah…','Duduk condong ke depan dan tekan cuping hidung',['Menengadah ke atas','Berbaring telentang','Berdiri tegak sambil berjalan'],'Menengadah membuat darah tertelan dan bisa membuat mual.');
+Q('P3K','Penanganan korban pingsan yang tepat adalah…','Telentang dengan tungkai ditinggikan',['Didudukkan paksa','Disuruh berlari','Diberi minum paksa'],'Tungkai ditinggikan membantu aliran darah ke otak.');
+Q('P3K','Tanda syok yang paling mungkin adalah…','Kulit pucat dingin lembap dengan nadi cepat dan lemah',['Wajah merah dan hangat dengan nadi kuat','Suhu tubuh sangat rendah tanpa gejala lain','Batuk dan pilek'],'Syok terjadi karena aliran darah ke organ tidak cukup.');
+Q('P3K','Pertolongan pertama luka bakar adalah…','Alirkan air bersih 10 sampai 20 menit',['Oleskan pasta gigi','Oleskan mentega','Tempel es batu langsung'],'Pendinginan menghentikan kerusakan jaringan lebih dalam.');
+Q('P3K','Yang tidak boleh dilakukan pada lepuh luka bakar adalah…','Memecahkan lepuh',['Menutup longgar dengan kasa steril','Mendinginkan dengan air mengalir','Mencuci tangan sebelum menolong'],'Lepuh melindungi luka dari infeksi.');
+Q('P3K','Huruf I pada RICE berarti…','Ice (kompres dingin)',['Injection','Infection','Immobile'],'RICE: Rest, Ice, Compression, Elevation.');
+Q('P3K','Bidai untuk patah tulang harus melewati…','Dua sendi di atas dan bawah patahan',['Satu sendi terdekat','Hanya bagian yang patah','Seluruh tubuh'],'Dua sendi agar tulang benar-benar tidak bergerak.');
+Q('P3K','Benda tajam menancap pada tubuh korban sebaiknya…','Tidak dicabut dan distabilkan',['Dicabut cepat','Ditekan sampai masuk','Digoyang pelan'],'Mencabut dapat menimbulkan perdarahan hebat.');
+Q('P3K','Penanganan awal sengatan panas adalah…','Pindahkan ke tempat teduh dan dinginkan tubuh',['Selimuti rapat','Suruh lanjut olahraga','Beri kopi panas'],'Sengatan panas darurat medis: dinginkan dan segera ke rumah sakit.');
+Q('P3K','Pada gigitan ular, hal yang TIDAK boleh dilakukan adalah…','Menyayat dan menghisap luka',['Menenangkan korban','Membatasi gerak anggota yang tergigit','Segera ke rumah sakit'],'Menyayat atau menghisap tidak terbukti membantu dan berbahaya.');
+Q('P3K','Benda masuk ke mata sebaiknya…','Dibilas dengan air bersih tanpa digosok',['Digosok kuat','Ditiup keras','Ditetesi minyak'],'Menggosok dapat menggores kornea.');
+Q('P3K','Bukan isi kotak P3K standar adalah…','Suntikan antibiotik',['Kasa steril','Mitela','Sarung tangan'],'Obat keras dan suntikan hanya diberikan tenaga medis.');
+Q('Pembalutan','Kain berbentuk segitiga untuk membalut disebut…','Mitela',['Plester','Verban elastis','Bidai'],'Mitela serbaguna untuk gendongan dan balutan.');
+Q('Pembalutan','Balutan tekan digunakan untuk…','Menghentikan perdarahan',['Menurunkan demam','Mengobati flu','Mempercepat tumbuh rambut'],'Balut tekan menambah tekanan pada luka.');
+Q('Pembalutan','Ujung jari dibiarkan terbuka setelah membalut agar…','Sirkulasi dapat dipantau',['Terlihat rapi','Cepat kering','Mudah digaruk'],'Warna, kehangatan dan rasa menunjukkan aliran darah.');
+Q('Pembalutan','Tanda balutan terlalu ketat adalah…','Ujung jari pucat atau biru dan kebas',['Kulit kemerahan hangat','Tidak ada rasa apa pun','Balutan longgar'],'Segera longgarkan balutan.');
+Q('Pembalutan','Membalut anggota gerak dilakukan dari…','Bagian jauh dari jantung ke arah jantung',['Dekat jantung ke ujung','Acak','Dari tengah ke luar'],'Arah ke jantung membantu aliran darah balik.');
+Q('Pembalutan','Fungsi bidai adalah…','Mencegah gerakan pada tulang yang patah',['Menghangatkan korban','Menyembuhkan luka','Menghentikan demam'],'Imobilisasi mengurangi nyeri dan cedera lanjutan.');
+Q('Pembalutan','Gendongan lengan (arm sling) berfungsi untuk…','Menyangga lengan yang cedera',['Mengangkat korban','Menutup kepala','Membersihkan luka'],'Tangan sebaiknya lebih tinggi dari siku.');
+Q('Darurat','Rasio kompresi dan napas bantuan RJP dewasa adalah…','30:2',['15:5','10:1','50:5'],'30 kompresi diikuti 2 napas bantuan.');
+Q('Darurat','Kecepatan kompresi dada yang dianjurkan adalah…','100 sampai 120 per menit',['40 sampai 60','60 sampai 80','160 sampai 200'],'Kecepatan ini menjaga aliran darah ke otak.');
+Q('Darurat','Kedalaman kompresi pada dewasa adalah…','5 sampai 6 cm',['1 sampai 2 cm','8 sampai 10 cm','Sedalam mungkin'],'Kurang dalam tidak efektif, terlalu dalam berisiko cedera.');
+Q('Darurat','Titik kompresi dada pada dewasa berada di…','Tengah dada, separuh bawah tulang dada',['Perut bagian atas','Bahu','Leher'],'Posisi tangan di tengah dada.');
+Q('Darurat','AED adalah singkatan dari…','Automated External Defibrillator',['Advanced Emergency Drug','Active Electric Device','Automatic Epidemic Detector'],'Alat kejut jantung otomatis yang memandu penolong lewat suara.');
+Q('Darurat','Nomor darurat terpadu nasional adalah…','112',['911','999','100'],'112 dapat dihubungi untuk berbagai keadaan darurat.');
+Q('Darurat','Tersedak dewasa yang masih sadar: tindakan pertama…','5 tepukan punggung',['Menyuruh minum banyak','Menekan dada ringan','Mengguncang tubuh'],'Lanjutkan 5 hentakan perut jika belum berhasil.');
+Q('Darurat','Jika korban tersedak menjadi tidak sadar, penolong harus…','Membaringkan dan memulai RJP',['Menunggu sadar sendiri','Memberi air','Meniup wajah'],'Segera hubungi bantuan dan mulai kompresi.');
+Q('Darurat','Pada triase, warna yang menandakan prioritas segera adalah…','Merah',['Hijau','Kuning','Hitam'],'Merah: gawat dan perlu pertolongan segera.');
+Q('Darurat','Pada triase, warna hitam menandakan…','Korban meninggal',['Luka ringan','Perlu pertolongan segera','Perlu rujukan'],'Hitam digunakan untuk korban meninggal.');
+Q('Darurat','Dugaan cedera tulang belakang, korban sebaiknya…','Tidak digerakkan kecuali ada bahaya langsung',['Segera didudukkan','Diangkat sendiri','Diajak berjalan'],'Gerakan salah dapat memperparah cedera saraf.');
+Q('Kesehatan','Lama prosedur cuci tangan 6 langkah dengan air dan sabun sekitar…','40 sampai 60 detik',['5 detik','10 detik','5 menit'],'Durasi cukup menghilangkan kuman secara efektif.');
+Q('Kesehatan','Kebutuhan tidur remaja sekitar…','8 sampai 10 jam',['3 sampai 4 jam','5 jam','12 sampai 14 jam'],'Tidur cukup menunjang konsentrasi dan imunitas.');
+Q('Kesehatan','Aktivitas fisik remaja minimal…','60 menit per hari',['10 menit per minggu','15 menit per hari','Tidak perlu'],'Anjuran dari WHO.');
+Q('Kesehatan','PHBS adalah singkatan dari…','Perilaku Hidup Bersih dan Sehat',['Pola Hidup Biasa Santai','Pelayanan Harian Bersih Sekolah','Perawatan Harian Bayi Sehat'],'PHBS membudayakan hidup sehat di sekolah dan rumah.');
+Q('Kesehatan','Pencegahan DBD dengan 3M adalah…','Menguras, Menutup, Mendaur ulang',['Mandi, Makan, Minum','Menjemur, Menyapu, Mengepel','Menebang, Membakar, Menimbun'],'3M memutus perkembangbiakan nyamuk Aedes aegypti.');
+Q('Kesehatan','Usia minimal calon donor darah adalah…','17 tahun',['12 tahun','14 tahun','21 tahun'],'Ketentuan umum donor darah.');
+Q('Kesehatan','Berat badan minimal calon donor darah sekitar…','45 kg',['30 kg','35 kg','60 kg'],'Syarat berat badan membantu keamanan donor.');
+Q('Bencana','Tindakan saat gempa berlangsung di dalam ruangan adalah…','Drop, Cover, Hold On',['Berlari ke lift','Berdiri di dekat jendela','Menunggu di lorong sempit'],'Berlindung di bawah meja kokoh sampai guncangan berhenti.');
+Q('Bencana','Jika pakaian terbakar, lakukan…','Stop, Drop, Roll',['Berlari kencang','Mengipasi dengan tangan','Melepas sepatu saja'],'Berguling memadamkan api.');
+Q('Bencana','Tanda awal tanah longsor adalah…','Retakan tanah di lereng dan air keruh mendadak',['Langit cerah','Burung berkicau','Angin lembut'],'Hujan lama dan retakan menandakan lereng labil.');
+Q('Bencana','Nomor pemadam kebakaran adalah…','113',['115','110','119'],'113 untuk pemadam kebakaran.');
+Q('Bencana','Setelah gempa berhenti, evakuasi sebaiknya lewat…','Tangga menuju titik kumpul',['Lift','Jendela lantai atas','Diam di kelas'],'Lift berisiko macet bila listrik padam.');
+Q('Bencana','BNPB adalah…','Badan Nasional Penanggulangan Bencana',['Badan Nasional Pelayanan Bank','Biro Navigasi Pantai Barat','Badan Nusantara Pemadam Bencana'],'BNPB mengoordinasikan penanggulangan bencana di Indonesia.');
+Q('Bencana','Saat banjir, hal yang perlu segera dilakukan adalah…','Matikan listrik dan menuju tempat tinggi',['Bermain air banjir','Menyalakan perangkat listrik','Menyeberangi arus deras'],'Listrik dan arus deras sangat berbahaya.');
+Q('Islami','QS. Al-Ma\'idah ayat 32 menegaskan nilai…','Menyelamatkan satu jiwa seperti menyelamatkan seluruh manusia',['Menumpuk harta','Bersaing dalam pertikaian','Menolak menolong yang berbeda'],'Ayat ini menunjukkan tingginya nilai menyelamatkan nyawa.');
+Q('Islami','Sebaik-baik manusia menurut hadis adalah yang…','Paling bermanfaat bagi manusia',['Paling kaya','Paling terkenal','Paling pandai berdebat'],'Hadis riwayat Ahmad dan Thabrani.');
+Q('Islami','Sikap utama relawan dalam menolong adalah…','Ikhlas',['Pamer','Pilih kasih','Mencari imbalan'],'Ikhlas sejalan dengan prinsip Kesukarelaan.');
+Q('Islami','Hadis "Bersuci setengah dari iman" mengajarkan pentingnya…','Kebersihan',['Kekayaan','Kecepatan','Jabatan'],'Kebersihan sejalan dengan PHBS.');
+Q('Islami','Menolong korban yang berbeda agama sesuai prinsip…','Kesamaan dan Kemanusiaan',['Kenetralan saja','Kesatuan saja','Kemandirian saja'],'Pertolongan diberikan kepada siapa pun yang membutuhkan.');
+
+/* ================= KARTU ISTILAH ================= */
+const FC=[['P3K','Pertolongan Pertama Pada Kecelakaan: pertolongan sementara sebelum tenaga medis tiba.'],['3A','Aman diri, aman lingkungan, aman korban: urutan pertama sebelum menolong.'],['DRABC','Danger, Respons, Airway, Breathing, Circulation: penilaian awal korban.'],['Triase','Pengelompokan korban berdasarkan tingkat kegawatan untuk menentukan prioritas.'],['Mitela','Kain segitiga serbaguna untuk balutan dan gendongan lengan.'],['Imobilisasi','Membatasi gerakan bagian tubuh yang cedera, misalnya dengan bidai.'],['Fraktur','Patah tulang, dapat tertutup atau terbuka.'],['Dislokasi','Sendi bergeser dari posisi normalnya.'],['Kontusio','Memar: pembuluh darah di bawah kulit pecah tanpa luka terbuka.'],['Abrasi','Luka lecet pada lapisan kulit teratas.'],['Laserasi','Luka robek dengan tepi tidak rata.'],['Epistaksis','Istilah medis untuk mimisan.'],['Sinkop','Istilah medis untuk pingsan.'],['Syok','Kondisi aliran darah tidak cukup ke organ vital, mengancam nyawa.'],['Hipertermia','Suhu tubuh terlalu tinggi, misalnya pada sengatan panas.'],['RJP','Resusitasi Jantung Paru: kompresi dada dan napas bantuan pada henti jantung.'],['AED','Alat kejut jantung otomatis yang memandu penolong dengan suara.'],['Airway','Jalan napas. Harus terbuka agar udara dapat masuk.'],['Antiseptik','Zat pembunuh kuman untuk membersihkan kulit atau luka.'],['Steril','Bebas dari kuman, misalnya kasa steril yang masih tersegel.'],['Evakuasi','Memindahkan korban atau warga dari tempat berbahaya ke tempat aman.'],['ICRC','Komite Internasional Palang Merah, berkedudukan di Jenewa.'],['IFRC','Federasi Internasional Palang Merah dan Bulan Sabit Merah.'],['Konvensi Jenewa','Perjanjian internasional yang melindungi korban perang dan petugas kemanusiaan.'],['Relawan','Orang yang bekerja secara sukarela tanpa mencari keuntungan.'],['Tri Bakti','Tiga bakti PMR: hidup sehat, berbakti kepada masyarakat, persahabatan.'],['PHBS','Perilaku Hidup Bersih dan Sehat.'],['3M Plus','Menguras, Menutup, Mendaur ulang plus upaya lain mencegah DBD.'],['Heimlich','Hentakan perut untuk mengeluarkan sumbatan jalan napas pada tersedak.'],['Hematoma','Kumpulan darah di bawah kulit atau jaringan akibat benturan.']];
+
+/* ================= DATA TAMBAHAN BERANDA ================= */
+const P7=[['Kemanusiaan','Mencegah dan meringankan penderitaan manusia di mana pun ditemukan, serta menghormati martabat manusia.'],['Kesamaan','Menolong tanpa membedakan kebangsaan, suku, agama, golongan dan pandangan politik.'],['Kenetralan','Tidak memihak dalam pertikaian dan tidak terlibat dalam perdebatan politik, ras, agama maupun ideologi.'],['Kemandirian','Gerakan bersifat mandiri dan tetap otonom walau membantu pemerintah di bidang kemanusiaan.'],['Kesukarelaan','Bekerja secara sukarela, bukan karena keinginan memperoleh keuntungan.'],['Kesatuan','Hanya ada satu perhimpunan di satu negara dan terbuka bagi semua orang.'],['Kesemestaan','Gerakan sedunia, setiap perhimpunan memiliki status setara dan saling membantu.']];
+const HIK=[['Barang siapa menyelamatkan satu jiwa, seakan-akan ia menyelamatkan seluruh manusia.','QS. Al-Ma\'idah: 32'],['Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia.','HR. Ahmad dan Thabrani'],['Bersuci adalah setengah dari iman.','HR. Muslim'],['Tolong-menolonglah dalam kebajikan dan takwa.','QS. Al-Ma\'idah: 2'],['Mukmin yang kuat lebih baik dan lebih dicintai Allah daripada mukmin yang lemah.','HR. Muslim']];
+const DAYS=[['7 April','Hari Kesehatan Sedunia'],['8 Mei','Hari Palang Merah dan Bulan Sabit Merah Sedunia'],['14 Juni','Hari Donor Darah Sedunia'],['17 September','Hari Palang Merah Indonesia'],['15 Oktober','Hari Cuci Tangan Sedunia'],['12 November','Hari Kesehatan Nasional'],['5 Desember','Hari Relawan Internasional']];
+const FEATS=[['📚','Materi lengkap','Enam belas topik dari sejarah sampai RJP dan bencana.','materi'],['🎯','Bank soal kuis','Delapan kategori, mode berwaktu, bantuan 50:50 dan pembahasan.','kuis'],['🃏','Kartu istilah','Balik kartu dan hafalkan istilah kepalangmerahan.','kartu'],['🚑','Simulasi darurat','Pilih tindakan dalam lima situasi nyata di sekolah.','simulasi'],['🧰','Alat bantu','Metronom RJP, penghitung nadi, timer cuci tangan dan checklist P3K.','alat'],['🏅','Lencana dan profil','Kumpulkan lencana dari progres belajarmu.','profil']];
+const KIT=['Sarung tangan sekali pakai','Masker','Kasa steril berbagai ukuran','Pembalut gulung','Mitela (kain segitiga)','Plester dan plester luka','Antiseptik (povidone iodine)','Cairan NaCl 0,9% atau air steril','Gunting perban','Pinset','Kompres dingin instan','Selimut darurat','Senter kecil','Buku catatan dan pulpen','Daftar nomor darurat'];
+const BADGES=[['🌱','Langkah Pertama','Baca 1 materi',()=>S.read.length>=1],['📖','Pelajar Tekun','Baca 5 materi',()=>S.read.length>=5],['🎓','Ahli Materi','Baca semua materi',()=>S.read.length>=MATERI.length],['🎯','Penantang Kuis','Selesaikan 1 kuis',()=>S.st.quiz>=1],['🏆','Skor Sempurna','Raih 100% di satu kuis',()=>S.st.perfect>=1],['🧠','Penghafal','Hafalkan 10 kartu istilah',()=>S.known.length>=10],['🚑','Siaga','Selesaikan 3 simulasi',()=>S.sims.length>=3],['💪','Penolong Tangguh','Jawab benar 100 soal',()=>S.st.ok>=100]];
+function checkBadges(){BADGES.forEach(b=>{if(b[3]()&&!S.badges.includes(b[1])){S.badges.push(b[1]);save();toast('🏅 Lencana baru: '+b[1])}})}
+
+/* ================= NAVIGASI ================= */
+const VIEWS=[['home','🏠','Beranda'],['materi','📚','Materi'],['kuis','🎯','Kuis'],['kartu','🃏','Kartu'],['simulasi','🚑','Simulasi'],['alat','🧰','Alat'],['profil','🏅','Profil']];
+$('#menu').innerHTML=VIEWS.map(v=>`<a data-v="${v[0]}" onclick="go('${v[0]}')">${v[1]} ${v[2]}</a>`).join('');
+function go(v){
+  $$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));
+  $$('#menu a').forEach(a=>a.classList.toggle('act',a.dataset.v===v));
+  $('#menu').classList.remove('open');scrollTo({top:0});
+  if(v==='home')renderHome();if(v==='materi')renderMateri();if(v==='kuis')quizSetup();if(v==='kartu')renderFC();
+  if(v==='simulasi')renderSimList();if(v==='alat')renderKit();if(v==='profil')renderProfil();
+}
+$('#burger').onclick=()=>$('#menu').classList.toggle('open');
+function applyTheme(){document.documentElement.dataset.theme=S.theme;$('#themeBtn').textContent=S.theme==='dark'?'☀️':'🌙';$('meta[name=theme-color]').content=S.theme==='dark'?'#06231c':'#e8faf2'}
+$('#themeBtn').onclick=()=>{S.theme=S.theme==='dark'?'light':'dark';applyTheme();save()};
+addEventListener('scroll',()=>{const h=document.documentElement;$('#readbar').style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%';$('#toTop').style.display=h.scrollTop>500?'block':'none'});
+
+/* ================= BERANDA ================= */
+let hk=0;
+function nextHikmah(){hk=(hk+1)%HIK.length;showHikmah()}
+function showHikmah(){$('#hikmah').innerHTML=`${HIK[hk][0]}<small>${HIK[hk][1]}</small>`}
+function renderHome(){
+  const h=new Date().getHours(),g=h<11?'Selamat pagi':h<15?'Selamat siang':h<18?'Selamat sore':'Selamat malam';
+  $('#greet').textContent=`Assalamu'alaikum, ${g}${S.name?', '+S.name:', sahabat PMR'}`;
+  const p=Math.round(S.read.length/MATERI.length*100);
+  $('#ringFg').style.strokeDashoffset=326.7*(1-p/100);$('#ringTx').textContent=p+'%';
+  $('#sMat').textContent=MATERI.length;$('#sQ').textContent=QS.length;$('#sFc').textContent=FC.length;$('#sOk').textContent=S.st.ok;
+  showHikmah();
+}
+function showPrinsip(i){
+  $$('#prinsipRow .chip').forEach((c,k)=>c.classList.toggle('on',k===i));
+  $('#prinsipDesc').innerHTML=`<h3>${P7[i][0]}</h3><p>${P7[i][1]}</p>`;
+}
+$('#prinsipRow').innerHTML=P7.map((p,i)=>`<button class="chip" onclick="showPrinsip(${i})">${p[0]}</button>`).join('');
+$('#featGrid').innerHTML=FEATS.map(f=>`<article class="glass card" onclick="go('${f[3]}')"><div class="ic">${f[0]}</div><h3>${f[1]}</h3><p>${f[2]}</p></article>`).join('');
+$('#dayList').innerHTML=DAYS.map(d=>`<div class="glass"><b>${d[0]}</b><span>${d[1]}</span></div>`).join('');
+
+/* ================= MATERI ================= */
+let cat='Semua',query='',cur=0;
+function setCat(c){cat=c;renderMateri()}
+$('#srch').oninput=e=>{query=e.target.value.toLowerCase().trim();renderMateri()};
+function renderMateri(){
+  const cats=['Semua',...new Set(MATERI.map(m=>m.cat))];
+  $('#catChips').innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" onclick="setCat('${c}')">${c}</button>`).join('');
+  const list=MATERI.filter(m=>(cat==='Semua'||m.cat===cat)&&(m.t+' '+m.s).toLowerCase().includes(query));
+  $('#matGrid').innerHTML=list.map(m=>`<article class="glass card" onclick="openM('${m.id}')"><div class="ic">${m.ic}</div><span class="tag">${m.cat}</span>${S.read.includes(m.id)?'<span class="done">✔ Selesai</span>':''}<h3>${m.t}</h3><p>${m.s}</p><small>⏱ ${m.min} menit baca</small></article>`).join('')||'<p class="empty glass">Materi tidak ditemukan. Coba kata kunci lain.</p>';
+  const p=S.read.length/MATERI.length*100;
+  $('#matBar').style.width=p+'%';$('#matTxt').textContent=`${S.read.length} dari ${MATERI.length} materi selesai (${Math.round(p)}%)`;
+}
+function openM(id){
+  cur=MATERI.findIndex(m=>m.id===id);const m=MATERI[cur];
+  $('#mTitle').textContent=m.ic+' '+m.t;$('#mBody').innerHTML=m.h;$('#mBody').scrollTop=0;
+  $('#markBtn').textContent=S.read.includes(m.id)?'✔ Sudah selesai':'✅ Tandai selesai';
+  $('#prevM').disabled=cur===0;$('#nextM').disabled=cur===MATERI.length-1;
+  $('#modal').classList.add('on');document.body.style.overflow='hidden';
+}
+function closeM(){$('#modal').classList.remove('on');document.body.style.overflow='';renderMateri()}
+function stepM(d){openM(MATERI[cur+d].id)}
+function markM(){
+  const id=MATERI[cur].id;
+  if(!S.read.includes(id)){S.read.push(id);save();toast('Materi ditandai selesai');checkBadges()}
+  $('#markBtn').textContent='✔ Sudah selesai';
+}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeM()});
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&$('#modal').classList.contains('on'))closeM();
+  if($('#v-kartu').classList.contains('on')){if(e.key==='ArrowRight')fcMove(1);if(e.key==='ArrowLeft')fcMove(-1);if(e.key===' '){e.preventDefault();fcFlip()}}
+});
+
+/* ================= KUIS ================= */
+let qz=null,qCat='Semua',qN=10,qMode='santai';
+function quizSetup(){
+  if(qz)clearInterval(qz.iv);qz=null;
+  const cats=['Semua',...new Set(QS.map(q=>q.c))];
+  $('#qSetup').hidden=false;$('#qPlay').hidden=true;$('#qEnd').hidden=true;
+  $('#qCats').innerHTML=cats.map(c=>`<button class="chip ${c===qCat?'on':''}" onclick="qCat='${c}';quizSetup()">${c} <small>${c==='Semua'?QS.length:QS.filter(q=>q.c===c).length}</small></button>`).join('');
+  $('#qNs').innerHTML=[5,10,15,20,30].map(n=>`<button class="chip ${n===qN?'on':''}" onclick="qN=${n};quizSetup()">${n} soal</button>`).join('');
+  $('#qModes').innerHTML=[['santai','😌 Santai'],['waktu','⏱ Berwaktu, 20 detik per soal']].map(m=>`<button class="chip ${m[0]===qMode?'on':''}" onclick="qMode='${m[0]}';quizSetup()">${m[1]}</button>`).join('');
+  const b=S.best[qCat];$('#qBest').textContent=b!=null?`Skor terbaikmu di kategori ini: ${b}%`:'Belum ada skor di kategori ini. Yuk mulai!';
+}
+function startQuiz(){
+  const pool=QS.filter(q=>qCat==='Semua'||q.c===qCat);
+  const list=shuf(pool).slice(0,qN).map(q=>({...q,o:shuf([q.a,...q.w])}));
+  qz={list,i:0,sc:0,ok:0,streak:0,maxS:0,wrong:[],hint:true,done:false,t:20,iv:null};
+  $('#qSetup').hidden=true;$('#qEnd').hidden=true;$('#qPlay').hidden=false;renderQ();
+}
+function renderQ(){
+  const q=qz.list[qz.i];qz.done=false;
+  $('#qNo').textContent=`Soal ${qz.i+1} dari ${qz.list.length}`;$('#qBar').style.width=(qz.i/qz.list.length*100)+'%';
+  $('#qScore').textContent='⭐ '+qz.sc;$('#qStreak').textContent='🔥 '+qz.streak;$('#qCat').textContent=q.c;$('#qText').textContent=q.q;
+  $('#qExp').hidden=true;$('#qNext').hidden=true;$('#q5050').disabled=!qz.hint;
+  $('#qOpts').innerHTML=q.o.map((o,i)=>`<button class="opt" onclick="pick(${i})"><b>${'ABCD'[i]}</b><span>${o}</span></button>`).join('');
+  clearInterval(qz.iv);
+  if(qMode==='waktu'){qz.t=20;$('#qTimer').hidden=false;tick();qz.iv=setInterval(tick,1000)}else $('#qTimer').hidden=true;
+}
+function tick(){
+  $('#qTimer').textContent='⏱ '+qz.t;$('#qTimer').classList.toggle('low',qz.t<=5);
+  if(qz.t--<=0){clearInterval(qz.iv);pick(-1)}
+}
+function pick(i){
+  if(!qz||qz.done)return;qz.done=true;clearInterval(qz.iv);
+  const q=qz.list[qz.i],ci=q.o.indexOf(q.a),ok=i===ci;S.st.ans++;
+  if(ok){S.st.ok++;qz.ok++;qz.sc+=10+(qz.streak>=2?5:0);qz.streak++;qz.maxS=Math.max(qz.maxS,qz.streak)}else{qz.streak=0;qz.wrong.push(q)}
+  $$('#qOpts .opt').forEach((b,k)=>{b.disabled=true;if(k===ci)b.classList.add('ok');else if(k===i)b.classList.add('bad')});
+  $('#qScore').textContent='⭐ '+qz.sc;$('#qStreak').textContent='🔥 '+qz.streak;
+  const e=$('#qExp');e.hidden=false;e.innerHTML=`<b>${ok?'✅ Benar!':i<0?'⌛ Waktu habis.':'❌ Belum tepat.'}</b> ${q.e}`;
+  const n=$('#qNext');n.hidden=false;n.textContent=qz.i===qz.list.length-1?'Lihat hasil 🏁':'Lanjut';save();
+}
+function fifty(){
+  if(!qz||qz.done||!qz.hint)return;qz.hint=false;$('#q5050').disabled=true;
+  const q=qz.list[qz.i],wr=shuf(q.o.map((o,k)=>k).filter(k=>q.o[k]!==q.a)).slice(0,2);
+  wr.forEach(k=>{const b=$$('#qOpts .opt')[k];b.disabled=true;b.style.opacity=.3});
+}
+function nextQ(){if(qz.i>=qz.list.length-1)endQuiz();else{qz.i++;renderQ()}}
+function endQuiz(){
+  const n=qz.list.length,pct=Math.round(qz.ok/n*100);
+  S.st.quiz++;if(pct===100)S.st.perfect++;
+  if(S.best[qCat]==null||pct>S.best[qCat])S.best[qCat]=pct;
+  save();checkBadges();
+  $('#qPlay').hidden=true;$('#qEnd').hidden=false;
+  const m=pct>=90?['🏆','Luar biasa! Kamu siap jadi penolong andalan.']:pct>=70?['🌟','Bagus sekali! Sedikit lagi sempurna.']:pct>=50?['💪','Lumayan. Ulangi materi yang masih kurang.']:['📚','Jangan menyerah. Baca ulang materinya lalu coba lagi.'];
+  $('#qEnd').innerHTML=`<div class="center" style="text-align:center"><div class="big">${m[0]}</div><h2 style="font-size:3rem">${pct}%</h2><p>${qz.ok} benar dari ${n} soal. Skor ${qz.sc}. Beruntun terbaik ${qz.maxS}.</p><p class="sub" style="margin:6px auto 14px">${m[1]}</p></div>`
+   +(qz.wrong.length?`<h4 style="font-size:1.4rem;margin:10px 0">Tinjau jawaban yang salah</h4>`+qz.wrong.map(q=>`<div class="rev"><b>${q.q}</b><div>✅ ${q.a}</div><small>${q.e}</small></div>`).join(''):'<p style="text-align:center">Tidak ada jawaban yang salah. Sempurna! 🎉</p>')
+   +`<div class="row center" style="margin-top:18px"><button class="btn pri" onclick="startQuiz()">🔁 Ulangi</button><button class="btn" onclick="quizSetup()">⚙ Ganti pengaturan</button><button class="btn" onclick="go('materi')">📚 Baca materi</button></div>`;
+  if(pct>=80)confetti();
+}
+function confetti(){
+  const c=$('#confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;c.style.display='block';
+  const P=[...Array(150)].map(()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.6,v:2+Math.random()*4,s:6+Math.random()*7,r:Math.random()*6,c:['#34e0a1','#f6c85f','#ff5566','#ffffff'][Math.random()*4|0]}));
+  let f=0;(function d(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y+=p.v;p.x+=Math.sin(p.y/30);p.r+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(0,0,p.s,p.s*.6);x.restore()});if(++f<230)requestAnimationFrame(d);else c.style.display='none'})();
+}
+
+/* ================= KARTU ================= */
+let fi=0,fo=false,fOrder=FC.map((_,i)=>i);
+function renderFC(){
+  const k=fOrder[fi];fo=false;$('#fcCard').classList.remove('flip');
+  $('#fcT').textContent=FC[k][0];$('#fcD').textContent=FC[k][1];$('#fcN').textContent=`${fi+1} / ${FC.length}`;
+  $('#fcKnown').textContent=`Hafal ${S.known.length} dari ${FC.length}`;$('#fcMark').textContent=S.known.includes(k)?'✔ Sudah hafal':'⭐ Tandai hafal';
+}
+function fcFlip(){fo=!fo;$('#fcCard').classList.toggle('flip',fo)}
+function fcMove(d){fi=(fi+d+FC.length)%FC.length;renderFC()}
+function fcShuffle(){fOrder=shuf(FC.map((_,i)=>i));fi=0;renderFC();toast('Urutan kartu diacak')}
+function fcKnow(){const k=fOrder[fi],i=S.known.indexOf(k);if(i>=0)S.known.splice(i,1);else{S.known.push(k);checkBadges()}save();renderFC();$('#fcCard').classList.toggle('flip',fo)}
+
+/* ================= SIMULASI ================= */
+const SC=[
+{ic:'😵',t:'Teman pingsan saat upacara',d:'Di tengah upacara yang terik, seorang temanmu lemas lalu jatuh pingsan.',st:[
+ {q:'Apa yang kamu lakukan lebih dulu?',o:[['Pastikan area aman lalu periksa respons dengan menepuk bahu',1,'Tepat. Mulai dari keamanan dan cek respons.'],['Guyur wajahnya dengan air banyak',0,'Belum tepat. Periksa respons dan napas dulu.'],['Tarik tubuhnya agar berdiri',0,'Jangan. Korban pingsan harus dibaringkan.']]},
+ {q:'Ia bernapas normal tetapi belum sadar. Tindakan selanjutnya?',o:[['Pindah ke tempat teduh, telentangkan, tinggikan tungkai, longgarkan pakaian',1,'Tepat. Ini membantu aliran darah ke otak.'],['Dudukkan dan beri minum paksa',0,'Berbahaya, bisa tersedak.'],['Biarkan di bawah terik sampai bangun',0,'Panas memperburuk kondisinya.']]},
+ {q:'Ia sudah sadar. Langkah terbaik?',o:[['Biarkan berbaring sebentar, beri minum perlahan, lalu bawa ke UKS',1,'Tepat. Pantau kondisinya dan laporkan ke guru.'],['Suruh langsung kembali ke barisan',0,'Terlalu cepat, ia bisa pingsan lagi.'],['Tinggalkan sendirian',0,'Pantau terus sampai pulih.']]}]},
+{ic:'🚲',t:'Luka berdarah di lapangan',d:'Temanmu terjatuh dari sepeda. Lututnya robek dan darah mengalir cukup deras.',st:[
+ {q:'Sebelum menyentuh luka, kamu sebaiknya…',o:[['Memakai sarung tangan atau pelindung bersih',1,'Tepat. Lindungi dirimu dan korban dari infeksi.'],['Langsung memegang luka tanpa pelindung',0,'Berisiko menularkan kuman.'],['Meniup luka agar tidak perih',0,'Napas membawa kuman.']]},
+ {q:'Cara menghentikan perdarahannya?',o:[['Tekan langsung dengan kasa atau kain bersih dan tinggikan tungkai',1,'Tepat. Tekanan langsung cara utama.'],['Taburkan bubuk kopi atau tanah',0,'Tidak steril dan berbahaya.'],['Balut sangat longgar lalu biarkan',0,'Tekanan perlu cukup untuk menahan darah.']]},
+ {q:'Darah sudah berhenti. Tindakan lanjutan?',o:[['Bilas air bersih, beri antiseptik, tutup kasa steril, bawa ke UKS',1,'Tepat. Periksa juga imunisasi tetanus.'],['Oleskan pasta gigi',0,'Dapat mengiritasi dan menyebabkan infeksi.'],['Biarkan terbuka agar cepat kering',0,'Luka terbuka mudah terinfeksi.']]}]},
+{ic:'💔',t:'Korban tidak sadar dan tidak bernapas',d:'Di pinggir jalan, seorang dewasa ambruk. Area sudah aman, tetapi ia tidak bereaksi saat kamu panggil.',st:[
+ {q:'Langkah berikutnya?',o:[['Teriak minta tolong, suruh seseorang menelepon 112 atau 119 dan mencari AED',1,'Tepat. Bantuan cepat menentukan peluang hidup.'],['Menunggu sampai ia bangun sendiri',0,'Waktu sangat berharga.'],['Memberi minum agar sadar',0,'Berbahaya pada korban tidak sadar.']]},
+ {q:'Kamu cek napas maksimal 10 detik. Napasnya tidak normal. Selanjutnya?',o:[['Mulai RJP dengan kompresi dada',1,'Tepat. Mulai sesegera mungkin.'],['Menunggu ambulans tanpa berbuat apa-apa',0,'Tanpa RJP peluang hidup turun cepat.'],['Menepuk pipinya keras berkali-kali',0,'Tidak menggantikan RJP.']]},
+ {q:'Cara kompresi yang benar?',o:[['Tekan tengah dada sedalam 5 sampai 6 cm, 100 sampai 120 per menit',1,'Tepat. Lanjutkan sampai bantuan atau AED tiba.'],['Tekan perut dengan lembut',0,'Salah titik dan tidak efektif.'],['Tekan pelan sedalam 2 cm',0,'Terlalu dangkal untuk dewasa.']]}]},
+{ic:'🍱',t:'Teman tersedak di kantin',d:'Saat makan siang, temanmu memegang leher, tidak bisa bicara dan batuknya lemah.',st:[
+ {q:'Tindakan pertama yang tepat?',o:[['Miringkan ke depan dan beri 5 tepukan keras di punggung',1,'Tepat. Ini langkah awal pada tersedak berat.'],['Suruh minum banyak air',0,'Air bisa memperparah sumbatan.'],['Tepuk pelan di bahu',0,'Terlalu lemah untuk mengeluarkan sumbatan.']]},
+ {q:'Belum keluar. Selanjutnya?',o:[['5 hentakan perut (Heimlich), ulangi bergantian dengan tepukan punggung',1,'Tepat. Lanjutkan sampai benda keluar.'],['Memasukkan jari ke tenggorokan',0,'Bisa mendorong benda lebih dalam.'],['Menunggu saja',0,'Sumbatan total berbahaya.']]},
+ {q:'Ia menjadi tidak sadar. Tindakanmu?',o:[['Baringkan, minta bantuan 112 atau 119, mulai RJP',1,'Tepat. Kompresi dapat membantu mengeluarkan sumbatan.'],['Mengguncang tubuhnya',0,'Tidak membantu.'],['Memberi napas bantuan sambil menggendongnya',0,'Korban harus berbaring pada permukaan keras.']]}]},
+{ic:'🌋',t:'Gempa saat jam pelajaran',d:'Ruang kelas bergetar kuat. Meja dan lemari bergoyang.',st:[
+ {q:'Saat guncangan berlangsung?',o:[['Drop, Cover, Hold On di bawah meja kokoh',1,'Tepat. Lindungi kepala dan leher.'],['Berlari ke jendela',0,'Kaca bisa pecah.'],['Berebut menuju lift',0,'Lift berbahaya saat gempa.']]},
+ {q:'Guncangan berhenti. Apa langkah berikutnya?',o:[['Evakuasi tertib lewat tangga ke titik kumpul',1,'Tepat. Ikuti arahan guru dan jangan berdesakan.'],['Mengambil semua barang lebih dulu',0,'Waktu evakuasi sangat berharga.'],['Tetap di kelas menunggu',0,'Gempa susulan bisa terjadi.']]},
+ {q:'Kamu sudah di lapangan terbuka. Hal yang perlu dilakukan?',o:[['Menjauh dari gedung dan tiang, lalu mendata teman di kelompokmu',1,'Tepat. Laporkan jika ada yang belum terlihat.'],['Berdiri dekat dinding gedung',0,'Material bisa runtuh.'],['Kembali ke kelas saat gempa susulan',0,'Sangat berbahaya.']]}]}
+];
+let sm=null;
+function renderSimList(){
+  $('#simPlay').hidden=true;$('#simList').hidden=false;
+  $('#simList').innerHTML=SC.map((s,i)=>`<article class="glass card sim" onclick="startSim(${i})"><div class="ic">${s.ic}</div>${S.sims.includes(i)?'<span class="done">✔ Selesai</span>':''}<h3>${s.t}</h3><p>${s.d}</p><small>${s.st.length} langkah keputusan</small></article>`).join('');
+}
+function startSim(i){sm={i,s:0,pts:0,locked:false};$('#simList').hidden=true;$('#simPlay').hidden=false;renderSim();scrollTo({top:0})}
+function renderSim(){
+  const sc=SC[sm.i],st=sc.st[sm.s];sm.locked=false;sm.opts=shuf(st.o);
+  $('#simPlay').innerHTML=`<div class="pbar"><i style="width:${sm.s/sc.st.length*100}%"></i></div><h3 style="font-size:1.7rem">${sc.ic} ${sc.t}</h3><p class="sub" style="margin:6px 0">${sc.d}</p><div class="qtxt">${st.q}</div>`
+   +sm.opts.map((o,k)=>`<button class="opt" onclick="simPick(${k})"><b>${'ABC'[k]}</b><span>${o[0]}</span></button>`).join('')+`<div class="exp" id="simFb" hidden></div><div class="row"><button class="btn" onclick="renderSimList()">Keluar</button><button class="btn pri" id="simNext" hidden onclick="simNext()">Lanjut</button></div>`;
+}
+function simPick(k){
+  if(sm.locked)return;sm.locked=true;const o=sm.opts[k];if(o[1])sm.pts++;
+  $$('#simPlay .opt').forEach((b,j)=>{b.disabled=true;if(sm.opts[j][1])b.classList.add('ok');else if(j===k)b.classList.add('bad')});
+  const f=$('#simFb');f.hidden=false;f.innerHTML=`<b>${o[1]?'✅ Tepat.':'❌ Kurang tepat.'}</b> ${o[0]===sm.opts.find(x=>x[1])[0]?o[2]:o[2]+' Jawaban terbaik: '+sm.opts.find(x=>x[1])[0]+'.'}`;
+  $('#simNext').hidden=false;$('#simNext').textContent=sm.s===SC[sm.i].st.length-1?'Lihat hasil':'Lanjut';
+}
+function simNext(){
+  const sc=SC[sm.i];
+  if(sm.s<sc.st.length-1){sm.s++;renderSim();return}
+  const all=sm.pts===sc.st.length;
+  if(!S.sims.includes(sm.i)){S.sims.push(sm.i);save();checkBadges()}
+  $('#simPlay').innerHTML=`<div class="center" style="text-align:center"><div class="big">${all?'🏅':'📘'}</div><h2 style="font-size:2.4rem">${sm.pts} dari ${sc.st.length} tepat</h2><p class="sub" style="margin:8px auto">${all?'Keputusanmu sempurna. Tetap latihan bersama tim.':'Baca kembali materi terkait, lalu ulangi simulasi ini.'}</p><div class="row center" style="margin-top:16px"><button class="btn pri" onclick="startSim(${sm.i})">🔁 Ulangi</button><button class="btn" onclick="renderSimList()">Pilih simulasi lain</button></div></div>`;
+  if(all)confetti();
+}
+
+/* ================= ALAT ================= */
+let mt={on:false,id:null,n:0,ctx:null};
+function beep(f){try{mt.ctx=mt.ctx||new(window.AudioContext||window.webkitAudioContext)();const o=mt.ctx.createOscillator(),g=mt.ctx.createGain();o.frequency.value=f;g.gain.value=.15;o.connect(g);g.connect(mt.ctx.destination);o.start();o.stop(mt.ctx.currentTime+.06)}catch(e){}}
+function mTick(){
+  mt.n=mt.n%30+1;$('#mCount').textContent=mt.n;const p=$('#mPulse');p.classList.remove('pulse');void p.offsetWidth;p.classList.add('pulse');
+  beep(mt.n===30?520:880);$('#mHint').textContent=mt.n===30?'Berhenti sebentar: beri 2 napas bantuan':'Tekan dalam, lepas penuh';
+}
+function mRun(){clearInterval(mt.id);if(mt.on)mt.id=setInterval(mTick,60000/+$('#bpm').value)}
+$('#mBtn').onclick=()=>{mt.on=!mt.on;$('#mBtn').textContent=mt.on?'⏹ Berhenti':'▶ Mulai';if(mt.on){mt.n=0;mTick();mRun()}else{clearInterval(mt.id);$('#mHint').textContent='Dihentikan'}};
+$('#bpm').oninput=e=>{$('#bpmV').textContent=e.target.value;mRun()};
+let pc={run:false,n:0,t:0,iv:null};
+$('#pulseBtn').onclick=()=>{
+  if(!pc.run){pc={run:true,n:0,t:15,iv:setInterval(()=>{pc.t--;$('#pRes').textContent=`Hitung… ${pc.t} detik`;if(pc.t<=0){clearInterval(pc.iv);pc.run=false;const b=pc.n*4,c=b<60?'di bawah rentang istirahat dewasa':b<=100?'dalam rentang istirahat dewasa':'di atas rentang istirahat dewasa';$('#pRes').innerHTML=`<b>${b} per menit</b> (${c}). Nadi remaja bisa sedikit berbeda dan dipengaruhi aktivitas.`}},1000)};$('#pRes').textContent='Hitung… 15 detik'}
+  if(pc.run){pc.n++;$('#pN').textContent=pc.n;const p=$('#pulseOut');p.classList.remove('pulse');void p.offsetWidth;p.classList.add('pulse')}
+};
+const HW=['Gosok telapak tangan','Gosok punggung tangan','Gosok sela-sela jari','Gosok buku jari','Putar ibu jari','Gosok ujung jari dan kuku'];
+let hw=null;
+$('#hwBtn').onclick=()=>{
+  if(hw){clearInterval(hw);hw=null;$('#hwBtn').textContent='🧼 Mulai';$('#hwStep').textContent='Siap?';$('#hwBar').style.width='0';return}
+  const t0=Date.now();$('#hwBtn').textContent='⏹ Batal';
+  hw=setInterval(()=>{const e=(Date.now()-t0)/1000;$('#hwBar').style.width=Math.min(100,e/40*100)+'%';
+    if(e>=40){clearInterval(hw);hw=null;$('#hwStep').textContent='Selesai. Tanganmu bersih! 🎉';$('#hwBtn').textContent='🧼 Ulangi';toast('Cuci tangan selesai');return}
+    $('#hwStep').textContent=(Math.floor(e/(40/6))+1)+'. '+HW[Math.min(5,Math.floor(e/(40/6)))]},150);
+};
+function renderKit(){
+  $('#kitList').innerHTML=KIT.map((k,i)=>`<label><input type="checkbox" ${S.kit.includes(i)?'checked':''} onchange="toggleKit(${i},this.checked)"> ${k}</label>`).join('');
+  $('#kitN').textContent=`${S.kit.length} dari ${KIT.length} lengkap`;
+}
+function toggleKit(i,on){const k=S.kit.indexOf(i);if(on&&k<0)S.kit.push(i);if(!on&&k>=0)S.kit.splice(k,1);save();$('#kitN').textContent=`${S.kit.length} dari ${KIT.length} lengkap`}
+function calcBMI(){
+  const w=+$('#bw').value,h=+$('#bh').value/100;if(!w||!h){toast('Isi berat dan tinggi badan dulu');return}
+  const b=w/(h*h),c=b<18.5?'kurang':b<25?'normal':b<30?'berlebih':'obesitas';
+  $('#bRes').innerHTML=`IMT <b>${b.toFixed(1)}</b> (${c}).<br><small>Untuk remaja, status gizi dinilai memakai kurva pertumbuhan menurut usia. Konsultasikan ke tenaga kesehatan.</small>`;
+}
+
+/* ================= PROFIL ================= */
+function saveName(){S.name=$('#nameIn').value.trim();save();toast(S.name?'Nama tersimpan':'Nama dihapus')}
+function renderProfil(){
+  $('#nameIn').value=S.name;
+  const acc=S.st.ans?Math.round(S.st.ok/S.st.ans*100):0;
+  $('#pStats').innerHTML=[[S.read.length+'/'+MATERI.length,'Materi dibaca'],[S.st.quiz,'Kuis selesai'],[S.st.ans,'Soal dijawab'],[acc+'%','Ketepatan jawaban'],[S.known.length,'Kartu hafal'],[S.sims.length+'/'+SC.length,'Simulasi selesai']].map(s=>`<div class="glass stat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join('');
+  $('#badgeList').innerHTML=BADGES.map(b=>`<div class="glass badge ${b[3]()?'':'off'}"><div class="ic">${b[0]}</div><b>${b[1]}</b><small>${b[2]}</small></div>`).join('');
+}
+function resetAll(){
+  if(!confirm('Hapus semua progres, skor dan lencana? Tindakan ini tidak dapat dibatalkan.'))return;
+  Object.assign(S,{read:[],best:{},st:{ans:0,ok:0,quiz:0,perfect:0},known:[],kit:[],sims:[],badges:[]});save();renderProfil();toast('Progres dihapus');
+}
+
+/* ================= MULAI ================= */
+applyTheme();showPrinsip(0);renderHome();
+$$('#menu a')[0].classList.add('act');
+</script>
+</body>
+</html>
